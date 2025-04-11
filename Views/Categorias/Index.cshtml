@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<FocinhosFelizes1.Models.Categoria>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Categorias";
 }
 
 <h1 class="fw-bold text-center">Categorias</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="col-3">
+    <a asp-action="Create" class="btn btn-secondary ">Adicionar</a>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -32,9 +32,8 @@
                     @Html.DisplayFor(modelItem => item.DescricaoCategoria)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.CategoriaId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.CategoriaId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.CategoriaId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.CategoriaId" class="btn btn-secondary">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.CategoriaId" class="btn btn-secondary">Excluir</a>
                 </td>
             </tr>
         }

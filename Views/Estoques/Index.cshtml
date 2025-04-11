@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<FocinhosFelizes1.Models.Estoque>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Estoque";
 }
 
-<h1>Index</h1>
+<h1 class="fw-bold text-center">Estoque</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-secondary ">Adicionar</a>
 </p>
 <table class="table">
     <thead>
@@ -22,20 +22,20 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Produtos.ProdutosId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.QtdEstoque)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EstoqueId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EstoqueId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EstoqueId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Produtos.ProdutosId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QtdEstoque)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EstoqueId" class="btn btn-secondary">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.EstoqueId" class="btn btn-secondary">Excluir</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

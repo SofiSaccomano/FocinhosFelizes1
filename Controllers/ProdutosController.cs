@@ -48,7 +48,7 @@ namespace FocinhosFelizes1.Controllers
         // GET: Produtos/Create
         public IActionResult Create()
         {
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaId");
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "TipoCategoria");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace FocinhosFelizes1.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaId", produtos.CategoriaId);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "TipoCategoria", produtos.CategoriaId);
             return View(produtos);
         }
 
@@ -83,7 +83,7 @@ namespace FocinhosFelizes1.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaId", produtos.CategoriaId);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "TipoCategoria", produtos.CategoriaId);
             return View(produtos);
         }
 
@@ -119,7 +119,7 @@ namespace FocinhosFelizes1.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "CategoriaId", produtos.CategoriaId);
+            ViewData["CategoriaId"] = new SelectList(_context.Categorias, "CategoriaId", "TipoCategoria", produtos.CategoriaId);
             return View(produtos);
         }
 
@@ -156,14 +156,14 @@ namespace FocinhosFelizes1.Controllers
             {
                 _context.Produtos.Remove(produtos);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProdutosExists(Guid id)
         {
-          return (_context.Produtos?.Any(e => e.ProdutosId == id)).GetValueOrDefault();
+            return (_context.Produtos?.Any(e => e.ProdutosId == id)).GetValueOrDefault();
         }
     }
 }
