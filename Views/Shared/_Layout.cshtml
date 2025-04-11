@@ -8,13 +8,12 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FocinhosFelizes1.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body style="background-color: #fff1e1">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #AF5700;">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/css/img/logo.png" alt="Logo" width="50" height="40">
-                    <i>Focinhos Felizes</i>
+                    <img src="~/css/img/logo.png" alt="Logo" width="50" height="40" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -23,25 +22,25 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index" style="color: #ffa333;">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy" style="color: #ffa333;">Política de Privacidade</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Categorias" asp-action="Index">Categorias</a>
+                            <a class="nav-link" asp-area="" asp-controller="Categorias" asp-action="Index" style="color: #ffa333;">Categorias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Doadores" asp-action="Index">Doadores</a>
+                            <a class="nav-link" asp-area="" asp-controller="Doadores" asp-action="Index" style="color: #ffa333;">Doadores</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Produtos" asp-action="Index">Produtos</a>
+                            <a class="nav-link" asp-area="" asp-controller="Produtos" asp-action="Index" style="color: #ffa333;">Produtos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Estoques" asp-action="Index">Estoques</a>
+                            <a class="nav-link" asp-area="" asp-controller="Estoques" asp-action="Index" style="color: #ffa333;">Estoques</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="RegistroDoacoes" asp-action="Index">Registro de Doações</a>
+                            <a class="nav-link" asp-area="" asp-controller="RegistroDoacoes" asp-action="Index" style="color: #ffa333;">Registro de Doações</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -55,9 +54,11 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-center text-muted" style="background-color: #b29274">
         <div class="container">
-            &copy; 2025 - FocinhosFelizes1 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            ®2025 - Focinhos Felizes  - <a asp-area="" asp-controller="Home" asp-action="Privacy">
+                <strong class="cor">Política de Privacidade</strong>
+            </a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

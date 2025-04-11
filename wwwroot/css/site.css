@@ -29,3 +29,9 @@ body {
 .w-55 {
     width: 55% !important;
 }
+
+.cor {
+    color: #855d12;
+    text-decoration: underline;
+    text-decoration-color: #855d12;
+}
