@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace FocinhosFelizes1.Data.Migrations
+namespace FocinhosFelizes1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250411133503_Doadores")]
-    partial class Doadores
+    [Migration("20250411141124_Estoque")]
+    partial class Estoque
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,25 @@ namespace FocinhosFelizes1.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("FocinhosFelizes1.Models.Categoria", b =>
+                {
+                    b.Property<Guid>("CategoriaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DescricaoCategoria")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TipoCategoria")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoriaId");
+
+                    b.ToTable("Categorias", (string)null);
+                });
 
             modelBuilder.Entity("FocinhosFelizes1.Models.Doador", b =>
                 {
@@ -46,6 +65,80 @@ namespace FocinhosFelizes1.Data.Migrations
                     b.HasKey("DoadorId");
 
                     b.ToTable("Doadores", (string)null);
+                });
+
+            modelBuilder.Entity("FocinhosFelizes1.Models.Estoque", b =>
+                {
+                    b.Property<Guid>("EstoqueId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProdutosId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("QtdEstoque")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EstoqueId");
+
+                    b.HasIndex("ProdutosId");
+
+                    b.ToTable("Estoques", (string)null);
+                });
+
+            modelBuilder.Entity("FocinhosFelizes1.Models.Produtos", b =>
+                {
+                    b.Property<Guid>("ProdutosId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CategoriaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DescricaoProduto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeCategoria")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProdutosId");
+
+                    b.HasIndex("CategoriaId");
+
+                    b.ToTable("Produtos", (string)null);
+                });
+
+            modelBuilder.Entity("FocinhosFelizes1.Models.RegistroDoacao", b =>
+                {
+                    b.Property<Guid>("RegistroDoacaoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DataDoacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DoadorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("DoadoresId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProdutosId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ValidadeProduto")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("RegistroDoacaoId");
+
+                    b.HasIndex("DoadorId");
+
+                    b.HasIndex("ProdutosId");
+
+                    b.ToTable("RegistroDoacoes", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -248,6 +341,45 @@ namespace FocinhosFelizes1.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("FocinhosFelizes1.Models.Estoque", b =>
+                {
+                    b.HasOne("FocinhosFelizes1.Models.Produtos", "Produtos")
+                        .WithMany()
+                        .HasForeignKey("ProdutosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Produtos");
+                });
+
+            modelBuilder.Entity("FocinhosFelizes1.Models.Produtos", b =>
+                {
+                    b.HasOne("FocinhosFelizes1.Models.Categoria", "Categoria")
+                        .WithMany()
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
+                });
+
+            modelBuilder.Entity("FocinhosFelizes1.Models.RegistroDoacao", b =>
+                {
+                    b.HasOne("FocinhosFelizes1.Models.Doador", "Doador")
+                        .WithMany()
+                        .HasForeignKey("DoadorId");
+
+                    b.HasOne("FocinhosFelizes1.Models.Produtos", "Produtos")
+                        .WithMany()
+                        .HasForeignKey("ProdutosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doador");
+
+                    b.Navigation("Produtos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
