@@ -48,7 +48,7 @@ namespace FocinhosFelizes1.Controllers
         // GET: Estoques/Create
         public IActionResult Create()
         {
-            ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "ProdutosId");
+            ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "NomeCategoria");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace FocinhosFelizes1.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "ProdutosId", estoque.ProdutosId);
+            ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "NomeCategoria", estoque.ProdutosId);
             return View(estoque);
         }
 
@@ -83,7 +83,7 @@ namespace FocinhosFelizes1.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "ProdutosId", estoque.ProdutosId);
+            ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "NomeCategoria", estoque.ProdutosId);
             return View(estoque);
         }
 
@@ -119,7 +119,7 @@ namespace FocinhosFelizes1.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "ProdutosId", estoque.ProdutosId);
+            ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "NomeCategoria", estoque.ProdutosId);
             return View(estoque);
         }
 
@@ -156,14 +156,14 @@ namespace FocinhosFelizes1.Controllers
             {
                 _context.Estoques.Remove(estoque);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool EstoqueExists(Guid id)
         {
-          return (_context.Estoques?.Any(e => e.EstoqueId == id)).GetValueOrDefault();
+            return (_context.Estoques?.Any(e => e.EstoqueId == id)).GetValueOrDefault();
         }
     }
 }
