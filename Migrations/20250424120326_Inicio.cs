@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FocinhosFelizes1.Migrations
 {
     /// <inheritdoc />
-    public partial class cOMPLETA : Migration
+    public partial class Inicio : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -204,13 +204,31 @@ namespace FocinhosFelizes1.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Estoques",
+                columns: table => new
+                {
+                    EstoqueId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProdutosId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    QtdEstoque = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Estoques", x => x.EstoqueId);
+                    table.ForeignKey(
+                        name: "FK_Estoques_Produtos_ProdutosId",
+                        column: x => x.ProdutosId,
+                        principalTable: "Produtos",
+                        principalColumn: "ProdutosId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RegistroDoacoes",
                 columns: table => new
                 {
                     RegistroDoacaoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProdutosId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DoadoresId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DoadorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DoadorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ValidadeProduto = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DataDoacao = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -221,7 +239,8 @@ namespace FocinhosFelizes1.Migrations
                         name: "FK_RegistroDoacoes_Doadores_DoadorId",
                         column: x => x.DoadorId,
                         principalTable: "Doadores",
-                        principalColumn: "DoadorId");
+                        principalColumn: "DoadorId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_RegistroDoacoes_Produtos_ProdutosId",
                         column: x => x.ProdutosId,
@@ -270,6 +289,11 @@ namespace FocinhosFelizes1.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Estoques_ProdutosId",
+                table: "Estoques",
+                column: "ProdutosId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Produtos_CategoriaId",
                 table: "Produtos",
                 column: "CategoriaId");
@@ -302,6 +326,9 @@ namespace FocinhosFelizes1.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Estoques");
 
             migrationBuilder.DropTable(
                 name: "RegistroDoacoes");

@@ -22,7 +22,7 @@ namespace FocinhosFelizes1.Controllers
         // GET: RegistroDoacoes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.RegistroDoacoes.Include(r => r.Produtos);
+            var applicationDbContext = _context.RegistroDoacoes.Include(r => r.Doador).Include(r => r.Produtos);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,6 +35,7 @@ namespace FocinhosFelizes1.Controllers
             }
 
             var registroDoacao = await _context.RegistroDoacoes
+                .Include(r => r.Doador)
                 .Include(r => r.Produtos)
                 .FirstOrDefaultAsync(m => m.RegistroDoacaoId == id);
             if (registroDoacao == null)
@@ -48,6 +49,7 @@ namespace FocinhosFelizes1.Controllers
         // GET: RegistroDoacoes/Create
         public IActionResult Create()
         {
+            ViewData["DoadorId"] = new SelectList(_context.Doadores, "DoadorId", "NomeDoador");
             ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "NomeCategoria");
             return View();
         }
@@ -57,7 +59,7 @@ namespace FocinhosFelizes1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RegistroDoacaoId,ProdutosId,DoadoresId,ValidadeProduto,DataDoacao")] RegistroDoacao registroDoacao)
+        public async Task<IActionResult> Create([Bind("RegistroDoacaoId,ProdutosId,DoadorId,ValidadeProduto,DataDoacao")] RegistroDoacao registroDoacao)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +68,7 @@ namespace FocinhosFelizes1.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["DoadorId"] = new SelectList(_context.Doadores, "DoadorId", "NomeDoador", registroDoacao.DoadorId);
             ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "NomeCategoria", registroDoacao.ProdutosId);
             return View(registroDoacao);
         }
@@ -83,6 +86,7 @@ namespace FocinhosFelizes1.Controllers
             {
                 return NotFound();
             }
+            ViewData["DoadorId"] = new SelectList(_context.Doadores, "DoadorId", "NomeDoador", registroDoacao.DoadorId);
             ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "NomeCategoria", registroDoacao.ProdutosId);
             return View(registroDoacao);
         }
@@ -92,7 +96,7 @@ namespace FocinhosFelizes1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("RegistroDoacaoId,ProdutosId,DoadoresId,ValidadeProduto,DataDoacao")] RegistroDoacao registroDoacao)
+        public async Task<IActionResult> Edit(Guid id, [Bind("RegistroDoacaoId,ProdutosId,DoadorId,ValidadeProduto,DataDoacao")] RegistroDoacao registroDoacao)
         {
             if (id != registroDoacao.RegistroDoacaoId)
             {
@@ -119,6 +123,7 @@ namespace FocinhosFelizes1.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["DoadorId"] = new SelectList(_context.Doadores, "DoadorId", "NomeDoador", registroDoacao.DoadorId);
             ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "NomeCategoria", registroDoacao.ProdutosId);
             return View(registroDoacao);
         }
@@ -132,6 +137,7 @@ namespace FocinhosFelizes1.Controllers
             }
 
             var registroDoacao = await _context.RegistroDoacoes
+                .Include(r => r.Doador)
                 .Include(r => r.Produtos)
                 .FirstOrDefaultAsync(m => m.RegistroDoacaoId == id);
             if (registroDoacao == null)

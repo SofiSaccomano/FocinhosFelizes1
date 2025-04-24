@@ -7,7 +7,7 @@
         public Guid ProdutosId { get; set; }
         public Produtos? Produtos { get; set; }
 
-        public Guid DoadoresId { get; set; }
+        public Guid DoadorId { get; set; }
         public Doador? Doador { get; set; }
 
         public DateTime? ValidadeProduto { get; set; }

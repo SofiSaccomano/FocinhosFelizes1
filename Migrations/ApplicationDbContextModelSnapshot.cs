@@ -17,7 +17,7 @@ namespace FocinhosFelizes1.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.1")
+                .HasAnnotation("ProductVersion", "7.0.20")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -117,10 +117,7 @@ namespace FocinhosFelizes1.Migrations
                     b.Property<DateTime?>("DataDoacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("DoadorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("DoadoresId")
+                    b.Property<Guid>("DoadorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ProdutosId")
@@ -366,7 +363,9 @@ namespace FocinhosFelizes1.Migrations
                 {
                     b.HasOne("FocinhosFelizes1.Models.Doador", "Doador")
                         .WithMany()
-                        .HasForeignKey("DoadorId");
+                        .HasForeignKey("DoadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("FocinhosFelizes1.Models.Produtos", "Produtos")
                         .WithMany()

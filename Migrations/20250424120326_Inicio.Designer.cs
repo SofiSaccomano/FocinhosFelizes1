@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FocinhosFelizes1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250411140653_cOMPLETA")]
-    partial class cOMPLETA
+    [Migration("20250424120326_Inicio")]
+    partial class Inicio
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.1")
+                .HasAnnotation("ProductVersion", "7.0.20")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -67,6 +67,26 @@ namespace FocinhosFelizes1.Migrations
                     b.ToTable("Doadores", (string)null);
                 });
 
+            modelBuilder.Entity("FocinhosFelizes1.Models.Estoque", b =>
+                {
+                    b.Property<Guid>("EstoqueId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProdutosId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("QtdEstoque")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EstoqueId");
+
+                    b.HasIndex("ProdutosId");
+
+                    b.ToTable("Estoques", (string)null);
+                });
+
             modelBuilder.Entity("FocinhosFelizes1.Models.Produtos", b =>
                 {
                     b.Property<Guid>("ProdutosId")
@@ -100,10 +120,7 @@ namespace FocinhosFelizes1.Migrations
                     b.Property<DateTime?>("DataDoacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("DoadorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("DoadoresId")
+                    b.Property<Guid>("DoadorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ProdutosId")
@@ -323,6 +340,17 @@ namespace FocinhosFelizes1.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("FocinhosFelizes1.Models.Estoque", b =>
+                {
+                    b.HasOne("FocinhosFelizes1.Models.Produtos", "Produtos")
+                        .WithMany()
+                        .HasForeignKey("ProdutosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Produtos");
+                });
+
             modelBuilder.Entity("FocinhosFelizes1.Models.Produtos", b =>
                 {
                     b.HasOne("FocinhosFelizes1.Models.Categoria", "Categoria")
@@ -338,7 +366,9 @@ namespace FocinhosFelizes1.Migrations
                 {
                     b.HasOne("FocinhosFelizes1.Models.Doador", "Doador")
                         .WithMany()
-                        .HasForeignKey("DoadorId");
+                        .HasForeignKey("DoadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("FocinhosFelizes1.Models.Produtos", "Produtos")
                         .WithMany()
