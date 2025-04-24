@@ -48,7 +48,7 @@ namespace FocinhosFelizes1.Controllers
         // GET: RegistroDoacoes/Create
         public IActionResult Create()
         {
-            ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "ProdutosId");
+            ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "NomeCategoria");
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace FocinhosFelizes1.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "ProdutosId", registroDoacao.ProdutosId);
+            ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "NomeCategoria", registroDoacao.ProdutosId);
             return View(registroDoacao);
         }
 
@@ -83,7 +83,7 @@ namespace FocinhosFelizes1.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "ProdutosId", registroDoacao.ProdutosId);
+            ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "NomeCategoria", registroDoacao.ProdutosId);
             return View(registroDoacao);
         }
 
@@ -119,7 +119,7 @@ namespace FocinhosFelizes1.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "ProdutosId", registroDoacao.ProdutosId);
+            ViewData["ProdutosId"] = new SelectList(_context.Produtos, "ProdutosId", "NomeCategoria", registroDoacao.ProdutosId);
             return View(registroDoacao);
         }
 
@@ -156,14 +156,14 @@ namespace FocinhosFelizes1.Controllers
             {
                 _context.RegistroDoacoes.Remove(registroDoacao);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool RegistroDoacaoExists(Guid id)
         {
-          return (_context.RegistroDoacoes?.Any(e => e.RegistroDoacaoId == id)).GetValueOrDefault();
+            return (_context.RegistroDoacoes?.Any(e => e.RegistroDoacaoId == id)).GetValueOrDefault();
         }
     }
 }
