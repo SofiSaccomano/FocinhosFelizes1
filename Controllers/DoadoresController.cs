@@ -22,9 +22,9 @@ namespace FocinhosFelizes1.Controllers
         // GET: Doadores
         public async Task<IActionResult> Index()
         {
-              return _context.Doadores != null ? 
-                          View(await _context.Doadores.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Doadores'  is null.");
+            return _context.Doadores != null ?
+                        View(await _context.Doadores.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Doadores'  is null.");
         }
 
         // GET: Doadores/Details/5
@@ -151,14 +151,29 @@ namespace FocinhosFelizes1.Controllers
             {
                 _context.Doadores.Remove(doador);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool DoadorExists(Guid id)
         {
-          return (_context.Doadores?.Any(e => e.DoadorId == id)).GetValueOrDefault();
+            return (_context.Doadores?.Any(e => e.DoadorId == id)).GetValueOrDefault();
+        }
+
+        // GET: Doadores/Search
+        public async Task<IActionResult> Search(string searchTerm)
+        {
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                return View("Index", await _context.Doadores.ToListAsync());
+            }
+
+            var doadores = await _context.Doadores
+                .Where(a => a.NomeDoador.Contains(searchTerm) || a.CPF.Contains(searchTerm))
+                .ToListAsync();
+
+            return View("Index", doadores);
         }
     }
 }

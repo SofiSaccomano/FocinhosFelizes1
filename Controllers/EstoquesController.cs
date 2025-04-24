@@ -165,5 +165,7 @@ namespace FocinhosFelizes1.Controllers
         {
             return (_context.Estoques?.Any(e => e.EstoqueId == id)).GetValueOrDefault();
         }
+
+
     }
 }
