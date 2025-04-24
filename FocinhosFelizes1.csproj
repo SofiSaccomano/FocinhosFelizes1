@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="CadastroUsuario-main\CadastroUsuario-main\CadastroUsuario\" />
     <Folder Include="wwwroot\css\img\" />
   </ItemGroup>
 
