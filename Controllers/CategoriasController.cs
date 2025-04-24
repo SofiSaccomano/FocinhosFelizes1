@@ -22,9 +22,9 @@ namespace FocinhosFelizes1.Controllers
         // GET: Categorias
         public async Task<IActionResult> Index()
         {
-              return _context.Categorias != null ? 
-                          View(await _context.Categorias.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Categorias'  is null.");
+            return _context.Categorias != null ?
+                        View(await _context.Categorias.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Categorias'  is null.");
         }
 
         // GET: Categorias/Details/5
@@ -151,14 +151,29 @@ namespace FocinhosFelizes1.Controllers
             {
                 _context.Categorias.Remove(categoria);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CategoriaExists(Guid id)
         {
-          return (_context.Categorias?.Any(e => e.CategoriaId == id)).GetValueOrDefault();
+            return (_context.Categorias?.Any(e => e.CategoriaId == id)).GetValueOrDefault();
+        }
+
+        // GET: Categorias/Search
+        public async Task<IActionResult> Search(string searchTerm)
+        {
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                return View("Index", await _context.Categorias.ToListAsync());
+            }
+
+            var categorias = await _context.Categorias
+                .Where(a => a.TipoCategoria.Contains(searchTerm) || a.DescricaoCategoria.Contains(searchTerm))
+                .ToListAsync();
+
+            return View("Index", categorias);
         }
     }
 }

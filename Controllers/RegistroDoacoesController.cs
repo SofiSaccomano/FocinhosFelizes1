@@ -171,5 +171,7 @@ namespace FocinhosFelizes1.Controllers
         {
             return (_context.RegistroDoacoes?.Any(e => e.RegistroDoacaoId == id)).GetValueOrDefault();
         }
+
+
     }
 }
