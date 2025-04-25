@@ -8,20 +8,20 @@
 
 <h3>Você realmente deseja excluir isso?</h3>
 <div>
-    <h4>RegistroDoacao</h4>
+    <h4>Registro Doação</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Produtos)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Produtos.ProdutosId)
+            @Html.DisplayFor(model => model.Produtos.NomeCategoria)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DoadorId)
+            @Html.DisplayNameFor(model => model.Doador)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DoadorId)
+            @Html.DisplayFor(model => model.Doador.NomeDoador)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.ValidadeProduto)
