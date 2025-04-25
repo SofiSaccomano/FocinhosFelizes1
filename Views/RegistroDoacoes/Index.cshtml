@@ -6,9 +6,20 @@
 
 <h1 class="fw-bold text-center">Registro de Doações</h1>
 
-<p>
-    <a asp-action="Create" class="btn btn-secondary ">Adicionar</a>
-</p>
+<div class="row mt-5 mb-3">
+    <div class="col-3">
+        <a asp-action="Create" class="btn btn-secondary ">Adicionar</a>
+    </div>
+    <div class="col-9">
+        <!-- Campo de Busca -->
+        <form asp-action="Search" method="get" class="mb-3">
+            <div class="input-group">
+                <input type="text" name="searchTerm" class="form-control" placeholder="Buscar por doadores ou produtos..." />
+                <button type="submit" class="btn btn-secondary">Buscar</button>
+            </div>
+        </form>
+    </div>
+</div>
 <table class="table">
     <thead>
         <tr>

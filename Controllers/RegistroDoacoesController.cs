@@ -173,5 +173,24 @@ namespace FocinhosFelizes1.Controllers
         }
 
 
+        // GET: RegistroDoacao/Search
+        public async Task<IActionResult> Search(string searchTerm)
+        {
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                return View("Index", await _context.RegistroDoacoes.ToListAsync());
+            }
+
+            var registroDoacoes = await _context.RegistroDoacoes
+            .Include(d => d.Produtos)
+            .Include(d => d.Doador)
+            .Where(d =>
+                d.Produtos.NomeCategoria.Contains(searchTerm) ||
+                d.Doador.NomeDoador.Contains(searchTerm))
+            .ToListAsync();
+
+            return View("Index", registroDoacoes);
+
+        }
     }
 }
