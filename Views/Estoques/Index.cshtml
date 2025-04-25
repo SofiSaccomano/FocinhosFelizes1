@@ -7,8 +7,19 @@
 <h1 class="fw-bold text-center">Estoque</h1>
 
 
-<div class="col-3">
-    <a asp-action="Create" class="btn btn-secondary ">Adicionar</a>
+<div class="row mt-5 mb-3">
+    <div class="col-3">
+        <a asp-action="Create" class="btn btn-secondary ">Adicionar</a>
+    </div>
+    <div class="col-9">
+        <!-- Campo de Busca -->
+        <form asp-action="Search" method="get" class="mb-3">
+            <div class="input-group">
+                <input type="text" name="searchTerm" class="form-control" placeholder="Buscar por produtos..." />
+                <button type="submit" class="btn btn-secondary">Buscar</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <table class="table">

@@ -166,6 +166,21 @@ namespace FocinhosFelizes1.Controllers
             return (_context.Estoques?.Any(e => e.EstoqueId == id)).GetValueOrDefault();
         }
 
+        // GET: Estoque/Search
+        public async Task<IActionResult> Search(string searchTerm)
+        {
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                return View("Index", await _context.Estoques.ToListAsync());
+            }
 
+            var estoques = await _context.Estoques
+            .Include(d => d.Produtos)
+            .Where(d => d.Produtos.NomeCategoria.Contains(searchTerm))
+            .ToListAsync();
+
+
+            return View("Index", estoques);
+        }
     }
 }
