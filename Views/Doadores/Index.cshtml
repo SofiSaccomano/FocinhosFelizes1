@@ -4,55 +4,54 @@
     ViewData["Title"] = "Doadores";
 }
 
-<h1 class="fw-bold text-center">Doadores</h1>
+<div id="listaDoadores" class="container tabela-reservas text-dark p-5 my-5 mt-6 d-flex flex-column justify-content-center" style="min-height: 60vh;">
+    <h1 class="text-center text- mb-3 fw-bold">Doadores</h1>
 
-<div class="row mt-5 mb-3">
-    <div class="col-3">
-        <a asp-action="Create" class="btn btn-secondary ">Adicionar</a>
+    <div class="row align-items-start gap-3 mb-4">
+        <div class="col-auto d-flex align-items-stretch">
+            <a asp-action="Create" class="btn btn-secondary px-4 d-flex align-items-center" style="height: 54px;">
+                Adicionar
+            </a>
+        </div>
+        <div id="divBuscarCategoria" class="col">
+            <form asp-action="Search" method="get">
+                <div class="input-group input-group-lg">
+                    <input type="text" name="searchTerm" class="form-control" placeholder="Buscar por nome ou CPF..." style="height: 54px;" />
+                    <button type="submit" class="btn btn-secondary" style="height: 54px;">
+                        Buscar
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="col-9">
-        <!-- Campo de Busca -->
-        <form asp-action="Search" method="get" class="mb-3">
-            <div class="input-group">
-                <input type="text" name="searchTerm" class="form-control" placeholder="Buscar por nome ou CPF..." />
-                <button type="submit" class="btn btn-secondary"> Buscar</button>
-            </div>
-        </form>
-    </div>
-</div>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeDoador)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CPF)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Celular)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+
+    <table class="table tabela-reservas text-dark table-striped">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NomeDoador)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CPF)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Celular)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.DoadorId" class="btn btn-secondary">Editar</a>
-                    <a asp-action="Delete" asp-route-id="@item.DoadorId" class="btn btn-secondary">Excluir</a>
-                </td>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Celular</th>
+                <th class="text-end">Ações</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.NomeDoador</td>
+                    <td>@item.CPF</td>
+                    <td>@item.Celular</td>
+                    <td class="text-end">
+                        <a asp-action="Edit" asp-route-id="@item.DoadorId" class="text-dark me-2">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.DoadorId" class="text-dark me-2">
+                            <i class="bi bi-trash3"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
