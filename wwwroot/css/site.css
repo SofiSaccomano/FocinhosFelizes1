@@ -118,3 +118,39 @@ a {
     a:hover {
         text-decoration: underline;
     }
+
+.form-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #e48200;
+    box-shadow: 0 0 0 0.2rem rgba(228, 130, 0, 0.25);
+}
+
+.btn-custom-save {
+    background-color: #e48200;
+    border: none;
+    color: #fff;
+    transition: background-color 0.2s ease-in-out;
+}
+
+    .btn-custom-save:hover {
+        background-color: #c56e00;
+    }
+
+.btn-outline-light-custom {
+    color: #e48200;
+    border: 1px solid #e48200;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+    .btn-outline-light-custom:hover {
+        background-color: #e48200;
+        color: #fff;
+    }
