@@ -8,6 +8,15 @@ html {
     }
 }
 
+:root {
+    --laranja-escuro: #af5700;
+    --laranja-medio: #d27300;
+    --laranja-claro: #ffa333;
+    --laranja-suave: #ffd19b;
+    --laranja-pastel: #ffe8cd;
+    --branco: #ffffff;
+}
+
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
@@ -77,4 +86,35 @@ body {
 
     .btn-secondary:hover {
         background-color: #5a6268;
+    }
+
+.btn-primary {
+    background-color: var(--laranja-escuro);
+    color: var(--branco);
+    border: none;
+}
+
+    .btn-primary:hover {
+        background-color: var(--laranja-medio);
+    }
+
+/* === Card (como no Delete) === */
+.card-delete {
+    background-color: var(--laranja-pastel);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+/* === Títulos e textos === */
+h1, h3, h4 {
+    color: var(--laranja-escuro);
+}
+
+a {
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
     }
