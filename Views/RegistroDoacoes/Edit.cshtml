@@ -1,67 +1,83 @@
 ﻿@model FocinhosFelizes1.Models.RegistroDoacao
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Registro de Doações";
 }
 
+<div class="container p-5 my-5 d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="form-card w-100" style="max-width: 800px; background-color:#ffe8cd">
+        <h1 class="text-center fw-bold mb-4" style="color:#e48200">Editar Registro de Doações</h1>
+        <hr />
 
-<h2 class="display-6 text-center">Editar Registro de Doações</h2>
-<hr />
+        <form asp-action="Edit" class="text-dark needs-validation" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <input type="hidden" asp-for="RegistroDoacaoId" />
 
-<form asp-action="Edit">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="RegistroDoacaoId" />
-    <div class="row">
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="ProdutosId" class="control-label"></label>
-                <select asp-for="ProdutosId" class="form-control" asp-items="ViewBag.ProdutosId"></select>
+            <div class="row mb-4">
+                <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                    <label asp-for="ProdutosId" class="form-label fw-semibold">Produto</label>
+                    <select asp-for="ProdutosId" class="form-select form-select-lg bg-light text-dark" asp-items="ViewBag.ProdutosId" required>
+                        <option value="">Selecione um produto</option>
+                    </select>
+                    <div class="invalid-feedback">Por favor, selecione um produto.</div>
+                    <span asp-validation-for="ProdutosId" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <label asp-for="DoadorId" class="form-label fw-semibold">Doador</label>
+                    <input asp-for="DoadorId" type="number" min="1" class="form-control form-control-lg bg-light text-dark" required />
+                    <div class="invalid-feedback">Por favor, informe o doador.</div>
+                    <span asp-validation-for="DoadorId" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="DoadorId" class="control-label"></label>
-                <input asp-for="DoadorId" class="form-control" />
-                <span asp-validation-for="DoadorId" class="text-danger"></span>
+
+            <div class="row mb-4">
+                <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                    <label asp-for="ValidadeProduto" class="form-label fw-semibold">Validade do Produto</label>
+                    <input asp-for="ValidadeProduto" type="date" class="form-control form-control-lg bg-light text-dark" required />
+                    <div class="invalid-feedback">Por favor, informe a validade do produto.</div>
+                    <span asp-validation-for="ValidadeProduto" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <label asp-for="DataDoacao" class="form-label fw-semibold">Data da Doação</label>
+                    <input asp-for="DataDoacao" type="date" class="form-control form-control-lg bg-light text-dark" required />
+                    <div class="invalid-feedback">Por favor, informe a data da doação.</div>
+                    <span asp-validation-for="DataDoacao" class="text-danger"></span>
+                </div>
             </div>
-        </div>
+
+            <div class="row gap-3 d-flex justify-content-between">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <button type="submit" class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center gap-2">
+                        <i class="bi bi-floppy"></i> Salvar
+                    </button>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <a asp-action="Index" class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center gap-2">
+                        <i class="bi bi-arrow-left"></i> Voltar
+                    </a>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="row">
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="ValidadeProduto" class="control-label"></label>
-                <input asp-for="ValidadeProduto" class="form-control" />
-                <span asp-validation-for="ValidadeProduto" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="DataDoacao" class="control-label"></label>
-                <input asp-for="DataDoacao" class="form-control" />
-                <span asp-validation-for="DataDoacao" class="text-danger"></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-6 mt-3">
-            <div class="form-group">
-                <button type="submit" class="btn btn-secondary w-100 p-2 "><i class="bi bi-floppy"></i>Salvar</button>
-            </div>
-        </div>
-
-        <div class="col-6 mt-3">
-            <div>
-                <a asp-action="Index" class="btn btn-secondary w-100 p-2"><i class="bi bi-arrow-clockwise"></i> Voltar</a>
-            </div>
-        </div>
-    </div>
-</form>
-
-
+</div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    <script>
+        (function () {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+
+            Array.from(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }

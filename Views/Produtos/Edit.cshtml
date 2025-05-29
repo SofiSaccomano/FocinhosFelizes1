@@ -1,57 +1,77 @@
 ﻿@model FocinhosFelizes1.Models.Produtos
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Produtos";
 }
-<h2 class="display-6 text-center">Editar Produtos</h2>
-<hr />
 
-<form asp-action="Edit">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="ProdutosId" />
+<div class="container p-5 my-5 d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="form-card w-100" style="max-width: 800px; background-color:#ffe8cd">
+        <h1 class="text-center fw-bold mb-4" style="color:#e48200">Editar Produtos</h1>
+        <hr />
 
-    <div class="row">
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="NomeCategoria" class="control-label"></label>
-                <input asp-for="NomeCategoria" class="form-control" />
-                <span asp-validation-for="NomeCategoria" class="text-danger"></span>
+        <form asp-action="Edit" class="text-dark needs-validation" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <input type="hidden" asp-for="ProdutosId" />
+
+            <div class="row mb-4">
+                <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                    <label asp-for="NomeCategoria" class="form-label fw-semibold">Nome do Produto</label>
+                    <input asp-for="NomeCategoria" class="form-control form-control-lg bg-light text-dark" required />
+                    <div class="invalid-feedback">Por favor, insira o nome do produto.</div>
+                    <span asp-validation-for="NomeCategoria" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <label asp-for="CategoriaId" class="form-label fw-semibold">Categoria</label>
+                    <select asp-for="CategoriaId" class="form-select form-select-lg bg-light text-dark" asp-items="ViewBag.CategoriaId" required>
+                        <option value="">Selecione uma categoria</option>
+                    </select>
+                    <div class="invalid-feedback">Por favor, selecione uma categoria.</div>
+                    <span asp-validation-for="CategoriaId" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="CategoriaId" class="control-label"></label>
-                <select asp-for="CategoriaId" class="form-control" asp-items="ViewBag.CategoriaId"></select>
+
+            <div class="row mb-4">
+                <div class="col-12">
+                    <label asp-for="DescricaoProduto" class="form-label fw-semibold">Descrição</label>
+                    <input asp-for="DescricaoProduto" class="form-control form-control-lg bg-light text-dark" required />
+                    <div class="invalid-feedback">Por favor, insira a descrição do produto.</div>
+                    <span asp-validation-for="DescricaoProduto" class="text-danger"></span>
+                </div>
             </div>
-        </div>
+
+            <div class="row gap-3 d-flex justify-content-between">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <button type="submit" class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center gap-2">
+                        <i class="bi bi-save"></i> Salvar
+                    </button>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <a asp-action="Index" class="btn btn-outline-secondary w-100 py-2 d-flex align-items-center justify-content-center gap-2">
+                        <i class="bi bi-arrow-left"></i> Voltar
+                    </a>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="form-group">
-                <label asp-for="DescricaoProduto" class="control-label"></label>
-                <input asp-for="DescricaoProduto" class="form-control" />
-                <span asp-validation-for="DescricaoProduto" class="text-danger"></span>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-6 mt-3">
-            <div class="form-group">
-                <button type="submit" class="btn btn-secondary w-100 p-2 ">Salvar</button>
-            </div>
-        </div>
-
-        <div class="col-6 mt-3">
-            <div>
-                <a asp-action="Index" class="btn btn-outline-secondary w-100 p-2">Voltar</a>
-            </div>
-        </div>
-    </div>
-</form>
-
+</div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    <script>
+        (function () {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+
+            Array.from(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }

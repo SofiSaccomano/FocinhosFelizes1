@@ -1,59 +1,75 @@
 ﻿@model FocinhosFelizes1.Models.Doador
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Doador";
 }
 
-<h2 class="display-6 text-center">Editar Doadores</h2>
-<hr />
+<div class="container p-5 my-5 d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="form-card w-100" style="max-width: 800px; background-color:#ffe8cd">
+        <h1 class="text-center fw-bold mb-4" style="color:#e48200">Editar Doador</h1>
+        <hr />
 
-<form asp-action="Edit">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="DoadorId" />
-    <div class="row">
-        <div class="col-12">
-            <div class="form-group">
-                <label asp-for="NomeDoador" class="control-label"></label>
-                <input asp-for="NomeDoador" class="form-control" />
-                <span asp-validation-for="NomeDoador" class="text-danger"></span>
+        <form asp-action="Edit" class="text-dark needs-validation" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <input type="hidden" asp-for="DoadorId" />
+
+            <div class="row mb-4">
+                <div class="col-12">
+                    <label asp-for="NomeDoador" class="form-label fw-semibold">Nome</label>
+                    <input asp-for="NomeDoador" class="form-control form-control-lg bg-light text-dark" required />
+                    <div class="invalid-feedback">Por favor, insira o nome do doador.</div>
+                    <span asp-validation-for="NomeDoador" class="text-danger"></span>
+                </div>
             </div>
-        </div>
+
+            <div class="row mb-4">
+                <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                    <label asp-for="CPF" class="form-label fw-semibold">CPF</label>
+                    <input asp-for="CPF" class="form-control form-control-lg bg-light text-dark" required />
+                    <div class="invalid-feedback">Por favor, insira o CPF do doador.</div>
+                    <span asp-validation-for="CPF" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <label asp-for="Celular" class="form-label fw-semibold">Celular</label>
+                    <input asp-for="Celular" class="form-control form-control-lg bg-light text-dark" required />
+                    <div class="invalid-feedback">Por favor, insira o número de celular.</div>
+                    <span asp-validation-for="Celular" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row gap-3 d-flex justify-content-between">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <button type="submit" class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center gap-2">
+                        <i class="bi bi-save"></i> Salvar
+                    </button>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <a asp-action="Index" class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center gap-2">
+                        <i class="bi bi-arrow-left"></i> Voltar
+                    </a>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="row">
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="CPF" class="control-label"></label>
-                <input asp-for="CPF" class="form-control" />
-                <span asp-validation-for="CPF" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="Celular" class="control-label"></label>
-                <input asp-for="Celular" class="form-control" />
-                <span asp-validation-for="Celular" class="text-danger"></span>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-6 mt-3">
-            <div class="form-group">
-                <button type="submit" class="btn btn-secondary w-100 p-2 ">Salvar</button>
-            </div>
-        </div>
-
-        <div class="col-6 mt-3">
-            <div>
-                <a asp-action="Index" class="btn btn-secondary w-100 p-2"> Voltar</a>
-            </div>
-        </div>
-    </div>
-</form>
-
-
+</div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    <script>
+        (function () {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+
+            Array.from(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }
