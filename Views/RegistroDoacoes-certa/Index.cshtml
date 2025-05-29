@@ -4,63 +4,55 @@
     ViewData["Title"] = "Registro de Doações";
 }
 
-<h1 class="fw-bold text-center">Registro de Doações</h1>
+<div id="listaRegistroDoacoes" class="container tabela-reservas text-dark p-5 my-5 mt-6 d-flex flex-column justify-content-center" style="min-height: 60vh;">
+    <h1 class="text-center text-dark mb-3 fw-bold">Registro de Doações</h1>
 
-
-<div class="row mt-5 mb-3">
-    <div class="col-3">
-        <a asp-action="Create" class="btn btn-secondary ">Adicionar</a>
+    <div class="row align-items-start gap-3 mb-4">
+        <div class="col-auto d-flex align-items-stretch">
+            <a asp-action="Create" class="btn btn-secondary px-4 d-flex align-items-center" style="height: 54px;">
+                <i class="bi bi-plus-circle me-2"></i> Adicionar
+            </a>
+        </div>
+        <div class="col">
+            <form asp-action="Search" method="get">
+                <div class="input-group input-group-lg">
+                    <input type="text" name="searchTerm" class="form-control" placeholder="Buscar por produtos..." style="height: 54px;" />
+                    <button type="submit" class="btn btn-secondary" style="height: 54px;">
+                        <i class="bi bi-search me-2"></i> Buscar
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="col-9">
-        <!-- Campo de Busca -->
-        <form asp-action="Search" method="get" class="mb-3">
-            <div class="input-group">
-                <input type="text" name="searchTerm" class="form-control" placeholder="Buscar por produtos..." />
-                <button type="submit" class="btn btn-secondary">Buscar</button>
-            </div>
-        </form>
-    </div>
-</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Produtos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Doador)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ValidadeProduto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataDoacao)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <table class="table tabela-reservas text-dark table-striped">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Produtos.ProdutosId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Doador.NomeDoador)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ValidadeProduto)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DataDoacao)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.RegistroDoacaoId" class="btn btn-secondary">Editar</a>
-                    <a asp-action="Delete" asp-route-id="@item.RegistroDoacaoId" class="btn btn-secondary">Excluir</a>
-                </td>
+                <th>Produto</th>
+                <th>Doador</th>
+                <th>Validade</th>
+                <th>Data da Doação</th>
+                <th class="text-end">Ações</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Produtos.ProdutosId</td>
+                    <td>@item.Doador.NomeDoador</td>
+                    <td>@item.ValidadeProduto</td>
+                    <td>@item.DataDoacao</td>
+                    <td class="text-end">
+                        <a asp-action="Edit" asp-route-id="@item.RegistroDoacaoId" class="text-dark me-3 d-inline-flex align-items-center">
+                            <i class="bi bi-pencil me-1"></i> Editar
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.RegistroDoacaoId" class="text-dark d-inline-flex align-items-center">
+                            <i class="bi bi-trash3 me-1"></i> Excluir
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
