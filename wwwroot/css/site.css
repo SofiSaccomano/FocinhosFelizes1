@@ -35,3 +35,28 @@ body {
     text-decoration: underline;
     text-decoration-color: #855d12;
 }
+
+.tabela-reservas {
+    background-color: #ffe8cd; /* fundo geral da tabela */
+}
+
+    .tabela-reservas thead {
+        background-color: #af5700; /* cabeçalho escuro */
+        color: white;
+    }
+
+    .tabela-reservas tbody tr:nth-child(even) {
+        background-color: #ffd19b; /* linhas pares */
+    }
+
+    .tabela-reservas tbody tr:nth-child(odd) {
+        background-color: #ffba6a; /* linhas ímpares */
+    }
+
+    .tabela-reservas td, .tabela-reservas th {
+        border-color: #af5700;
+    }
+
+.formCreate {
+    background-color: #ffe8cd; /* fundo do formulário */
+}
