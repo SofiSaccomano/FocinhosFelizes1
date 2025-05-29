@@ -37,26 +37,44 @@ body {
 }
 
 .tabela-reservas {
-    background-color: #ffe8cd; /* fundo geral da tabela */
+    background-color: #ffe8cd;
+    border-collapse: collapse;
+    width: 100%;
+    font-family: sans-serif;
 }
 
     .tabela-reservas thead {
-        background-color: #af5700; /* cabeçalho escuro */
+        background-color: #af5700;
         color: white;
     }
 
     .tabela-reservas tbody tr:nth-child(even) {
-        background-color: #ffd19b; /* linhas pares */
+        background-color: #ffd19b;
     }
 
     .tabela-reservas tbody tr:nth-child(odd) {
-        background-color: #ffba6a; /* linhas ímpares */
+        background-color: #ffba6a;
     }
 
     .tabela-reservas td, .tabela-reservas th {
-        border-color: #af5700;
+        border: 1px solid #af5700;
+        padding: 10px;
+        text-align: center;
+        vertical-align: middle;
     }
 
-.formCreate {
-    background-color: #ffe8cd; /* fundo do formulário */
+    .tabela-reservas i.fa-file {
+        margin-right: 6px;
+        color: rgba(0, 0, 0, 0.4);
+    }
+
+.btn-secondary {
+    background-color: #6c757d; /* cinza neutro */
+    border: none;
+    padding: 5px 10px;
+    margin-right: 10px; /* Espaço entre os botões */
 }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
