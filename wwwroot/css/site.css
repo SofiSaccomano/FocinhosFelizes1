@@ -118,3 +118,60 @@ a {
     a:hover {
         text-decoration: underline;
     }
+
+.register-card {
+    background: #ffe8cd; /* fundo suave */
+    color: black;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    max-width: 500px;
+    margin: auto;
+    margin-top: 60px;
+    animation: fadeIn 1s ease;
+    border-left: 8px solid #ffa333;
+}
+
+    .register-card h2 {
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .register-card p {
+        color: #2c2c2c; /* texto suave */
+        font-size: 15px;
+        margin-bottom: 30px;
+    }
+
+.form-floating label {
+    font-size: 14px;
+    color: #c06500;
+}
+
+.btn-register {
+    background-color: #af5700;
+    /* botão laranja */
+    border: none;
+    padding: 12px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    color: white;
+    width: 100%;
+}
+
+    .btn-register:hover {
+        background-color: #6c757d; /* tom mais escuro no hover */
+    }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
