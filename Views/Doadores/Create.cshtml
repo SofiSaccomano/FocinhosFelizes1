@@ -1,58 +1,89 @@
 ﻿@model FocinhosFelizes1.Models.Doador
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Cadastro de Doadores";
 }
 
-<h2 class="display-6 text-center">Cadastro de Doadores</h2>
+<div class="container py-5 my-5 d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="form-card w-100" style="max-width: 700px; background-color:#ffe8cd; box-shadow: 0 8px 20px rgba(210, 115, 0, 0.25); padding: 40px; border-radius: 15px;">
+        <h1 class="text-center fw-bold mb-4" style="color:#d27300; letter-spacing: 1px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            Cadastro de Doadores
+        </h1>
+        <hr style="border-top: 3px solid #d27300; border-radius: 10px;" />
 
-<form asp-action="Create">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="row">
-        <div class="col-12 ">
-            <div class="form-group">
-                <label asp-for="NomeDoador" class="control-label"></label>
-                <input asp-for="NomeDoador" class="form-control" />
-                <span asp-validation-for="NomeDoador" class="text-danger"></span>
+        <form asp-action="Create" class="text-dark needs-validation" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="row mb-4">
+                <div class="col-12">
+                    <label asp-for="NomeDoador" class="form-label fw-semibold" style="color:#a85e00;">Nome</label>
+                    <input asp-for="NomeDoador"
+                           class="form-control form-control-lg"
+                           style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;"
+                           placeholder="Nome completo" required />
+                    <div class="invalid-feedback">Por favor, insira o nome do doador.</div>
+                    <span asp-validation-for="NomeDoador" class="text-danger"></span>
+                </div>
             </div>
-        </div>
+
+            <div class="row mb-4">
+                <div class="col-12 col-lg-6">
+                    <label asp-for="CPF" class="form-label fw-semibold" style="color:#a85e00;">CPF</label>
+                    <input asp-for="CPF"
+                           class="form-control form-control-lg"
+                           style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;"
+                           placeholder="000.000.000-00" required />
+                    <div class="invalid-feedback">Por favor, insira um CPF válido.</div>
+                    <span asp-validation-for="CPF" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <label asp-for="Celular" class="form-label fw-semibold" style="color:#a85e00;">Celular</label>
+                    <input asp-for="Celular"
+                           class="form-control form-control-lg"
+                           style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;"
+                           placeholder="(00) 00000-0000" required />
+                    <div class="invalid-feedback">Por favor, insira um número de celular válido.</div>
+                    <span asp-validation-for="Celular" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row gap-3 d-flex justify-content-between">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <button type="submit"
+                            class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center gap-2"
+                            style="border-radius: 12px; font-weight: 600; box-shadow: 0 4px 12px rgba(108, 117, 125, 0.5);">
+                        <i class="bi bi-check2-circle"></i> Salvar
+                    </button>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <a asp-action="Index"
+                       class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center gap-2"
+                       style="border-radius: 12px; font-weight: 600;">
+                        <i class="bi bi-arrow-left"></i> Voltar
+                    </a>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="row">
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="CPF" class="control-label"></label>
-                <input asp-for="CPF" class="form-control" />
-                <span asp-validation-for="CPF" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="Celular" class="control-label"></label>
-                <input asp-for="Celular" class="form-control" />
-                <span asp-validation-for="Celular" class="text-danger"></span>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-6 mt-3">
-            <div class="form-group">
-                <button type="submit" class="btn btn-secondary w-100 p-2 ">Salvar</button>
-            </div>
-        </div>
-
-        <div class="col-6 mt-3">
-            <div>
-                <a asp-action="Index" class="btn btn-outline-secondary w-100 p-2"> Voltar</a>
-            </div>
-        </div>
-    </div>
-
-
-</form>
-
+</div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    <script>
+        (function () {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+            Array.from(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }
