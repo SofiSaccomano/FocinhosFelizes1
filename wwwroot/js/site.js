@@ -1,4 +1,20 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿let tamanhoFonte = 100; // percentual inicial (100% = tamanho padrão)
 
-// Write your JavaScript code.
+function aumentarFonte() {
+    if (tamanhoFonte < 200) { // limite máximo de 200%
+        tamanhoFonte += 10;
+        document.body.style.fontSize = tamanhoFonte + "%";
+    }
+}
+
+function diminuirFonte() {
+    if (tamanhoFonte > 50) { // limite mínimo de 50%
+        tamanhoFonte -= 10;
+        document.body.style.fontSize = tamanhoFonte + "%";
+    }
+}
+
+
+function toggleContraste() {
+    document.body.classList.toggle("contraste");
+}
