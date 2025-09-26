@@ -211,3 +211,79 @@ a {
         transform: translateY(0);
     }
 }
+
+/* Estilo para a caixa de controle de fonte */
+#controle-fonte {
+    position: fixed; /* Fixa a posição da caixa na tela, mesmo quando rolar a página */
+    top: 68px; /* Distância de 80px do topo da página */
+    right: 20px; /* Distância de 20px da borda direita da página */
+    background-color: #fff; /* Fundo branco para a caixa */
+    border: 1px solid #ccc; /* Borda cinza clara em volta da caixa */
+    border-radius: 8px; /* Bordas arredondadas para deixar a caixa com cantos suaves */
+    padding: 10px; /* Espaçamento interno de 10px dentro da caixa */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra leve para dar efeito de elevação */
+    z-index: 1000; /* Garante que o controle fique acima de outros elementos na tela */
+}
+
+    /* Estilo para os botões dentro do controle de fonte */
+    #controle-fonte button {
+        background-color: #6f4e37; /* Cor de fundo dos botões (tom de café) */
+        color: #fff; /* Cor da fonte dos botões (branca) */
+        border: none; /* Remove a borda padrão dos botões */
+        margin: 2px; /* Margem externa de 2px entre os botões */
+        padding: 8px 12px; /* Espaçamento interno (8px em cima/baixo, 12px nas laterais) */
+        font-size: 18px; /* Tamanho da fonte dos botões */
+        border-radius: 5px; /* Bordas arredondadas nos botões */
+        cursor: pointer; /* Mostra a mãozinha ao passar o mouse, indicando que é clicável */
+    }
+
+        /* Estilo para o botão quando o mouse passa por cima (hover) */
+        #controle-fonte button:hover {
+            background-color: #5a392a; /* Cor mais escura para indicar que está sendo "hovered" */
+        }
+
+/* ==============================
+   Modo contraste (dark mode)
+   ============================== */
+body.contraste-ativo {
+    background-color: #121212; /* Fundo escuro */
+    color: #f5f5f5; /* Texto claro */
+}
+
+    /* Links */
+    body.contraste-ativo a {
+        color: #58a6ff;
+    }
+
+    /* Controle de fonte escuro */
+    body.contraste-ativo #controle-fonte {
+        background-color: #222;
+        border-color: #555;
+    }
+
+        body.contraste-ativo #controle-fonte button {
+            background-color: #444;
+            color: #fff;
+        }
+
+            body.contraste-ativo #controle-fonte button:hover {
+                background-color: #666;
+            }
+
+    /* ==============================
+   Navbar no modo contraste
+   ============================== */
+    body.contraste-ativo .navbar {
+        background-color: #1e1e1e !important;
+        border-bottom: 1px solid #333;
+    }
+
+        body.contraste-ativo .navbar .navbar-brand,
+        body.contraste-ativo .navbar .nav-link {
+            color: #f5f5f5 !important;
+        }
+
+            body.contraste-ativo .navbar .nav-link:hover {
+                color: #58a6ff !important;
+            }
+
