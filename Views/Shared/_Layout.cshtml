@@ -46,29 +46,32 @@
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
+
+
                 <div id="controle-fonte">
                     <button onclick="aumentarFonte()">A+</button>
                     <button onclick="diminuirFonte()">A-</button>
-                    <button onclick="toggleContraste()">🌗</button>
+                    <button onclick="mudarContraste()">🌗</button>
                 </div>
 
+
             </div>
-
-            <!-- /* VLibras */ -->
-            <!-- /* Colocar antes de fechar o header !! */ -->
-            <div vw class="enabled">
-                <div vw-access-button class="active"></div>
-                <div vw-plugin-wrapper>
-                    <div class="vw-plugin-top-wrapper"></div>
-                </div>
-            </div>
-
-            <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-            <script>
-                new window.VLibras.Widget("https://vlibras.gov.br/app");
-            </script>
-
         </nav>
+
+        <!-- /* VLibras */ -->
+        <!-- /* Colocar antes de fechar o header !! */ -->
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+        <script>
+            new window.VLibras.Widget("https://vlibras.gov.br/app");
+        </script>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -89,3 +92,7 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+@* gente é um teste
+outro teste parte 2
+*@

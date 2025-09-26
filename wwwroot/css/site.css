@@ -1,29 +1,23 @@
+:root {
+    --laranja-escuro: #af5700;
+    --laranja-medio: #d27300;
+    --laranja-claro: #ff8c00; /* ajustado para contraste melhor */
+    --laranja-suave: #e6a34b; /* mais forte que #ffd19b */
+    --laranja-pastel: #fff2e0; /* mais claro para fundo */
+    --branco: #ffffff;
+    --cinza-texto: #2c2c2c; /* cor de texto padrão */
+}
+
 html {
     font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
     html {
         font-size: 16px;
     }
-}
-
-:root {
-    --laranja-escuro: #af5700;
-    --laranja-medio: #d27300;
-    --laranja-claro: #ffa333;
-    --laranja-suave: #ffd19b;
-    --laranja-pastel: #ffe8cd;
-    --branco: #ffffff;
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-    position: relative;
-    min-height: 100%;
 }
 
 body {
@@ -40,48 +34,57 @@ body {
 }
 
 .cor {
-    color: #855d12;
+    color: #6b3c00; /* mais escuro para contraste */
     text-decoration: underline;
-    text-decoration-color: #855d12;
+    text-decoration-color: #6b3c00;
 }
 
+/* ==============================
+   Tabelas
+   ============================== */
 .tabela-reservas {
-    background-color: #ffe8cd;
+    background-color: var(--laranja-pastel);
     border-collapse: collapse;
     width: 100%;
     font-family: sans-serif;
 }
 
     .tabela-reservas thead {
-        background-color: #af5700;
-        color: white;
+        background-color: var(--laranja-escuro);
+        color: var(--branco);
     }
 
     .tabela-reservas tbody tr:nth-child(even) {
-        background-color: #ffd19b;
+        background-color: #f7c67a; /* contraste melhorado */
     }
 
     .tabela-reservas tbody tr:nth-child(odd) {
-        background-color: #ffba6a;
+        background-color: #e6a34b; /* tom médio para diferenciar */
     }
 
-    .tabela-reservas td, .tabela-reservas th {
-        border: 1px solid #af5700;
+    .tabela-reservas td,
+    .tabela-reservas th {
+        border: 1px solid var(--laranja-escuro);
         padding: 10px;
         text-align: center;
         vertical-align: middle;
+        color: var(--cinza-texto);
     }
 
     .tabela-reservas i.fa-file {
         margin-right: 6px;
-        color: rgba(0, 0, 0, 0.4);
+        color: rgba(0, 0, 0, 0.6); /* mais visível que 0.4 */
     }
 
+/* ==============================
+   Botões
+   ============================== */
 .btn-secondary {
-    background-color: #6c757d; /* cinza neutro */
+    background-color: #6c757d;
     border: none;
     padding: 5px 10px;
-    margin-right: 10px; /* Espaço entre os botões */
+    margin-right: 10px;
+    color: #fff;
 }
 
     .btn-secondary:hover {
@@ -97,40 +100,6 @@ body {
     .btn-primary:hover {
         background-color: var(--laranja-medio);
     }
-
-/* === Card (como no Delete) === */
-.card-delete {
-    background-color: var(--laranja-pastel);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-}
-
-/* === Títulos e textos === */
-h1, h3, h4 {
-    color: var(--laranja-escuro);
-}
-
-a {
-    text-decoration: none;
-}
-
-    a:hover {
-        text-decoration: underline;
-    }
-
-.form-card {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    transition: all 0.3s ease-in-out;
-}
-
-.form-control:focus {
-    border-color: #e48200;
-    box-shadow: 0 0 0 0.2rem rgba(228, 130, 0, 0.25);
-}
 
 .btn-custom-save {
     background-color: #e48200;
@@ -155,38 +124,8 @@ a {
         color: #fff;
     }
 
-.register-card {
-    background: #ffe8cd; /* fundo suave */
-    color: black;
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-    max-width: 500px;
-    margin: auto;
-    margin-top: 60px;
-    animation: fadeIn 1s ease;
-    border-left: 8px solid #ffa333;
-}
-
-    .register-card h2 {
-        font-weight: 700;
-        margin-bottom: 10px;
-    }
-
-    .register-card p {
-        color: #2c2c2c; /* texto suave */
-        font-size: 15px;
-        margin-bottom: 30px;
-    }
-
-.form-floating label {
-    font-size: 14px;
-    color: #c06500;
-}
-
 .btn-register {
-    background-color: #af5700;
-    /* botão laranja */
+    background-color: var(--laranja-escuro);
     border: none;
     padding: 12px;
     font-weight: bold;
@@ -197,7 +136,73 @@ a {
 }
 
     .btn-register:hover {
-        background-color: #6c757d; /* tom mais escuro no hover */
+        background-color: #8c4600; /* contraste reforçado */
+    }
+
+/* ==============================
+   Cards e formulários
+   ============================== */
+.card-delete {
+    background-color: var(--laranja-pastel);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+h1, h3, h4 {
+    color: var(--laranja-escuro);
+}
+
+a {
+    color: var(--laranja-escuro);
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+        color: var(--laranja-medio);
+    }
+
+.form-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #e48200;
+    box-shadow: 0 0 0 0.2rem rgba(228, 130, 0, 0.25);
+}
+
+.form-floating label {
+    font-size: 14px;
+    color: #6b3c00; /* reforçado para contraste */
+}
+
+.register-card {
+    background: var(--laranja-pastel);
+    color: black;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    max-width: 500px;
+    margin: auto;
+    margin-top: 60px;
+    animation: fadeIn 1s ease;
+    border-left: 8px solid var(--laranja-claro);
+}
+
+    .register-card h2 {
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .register-card p {
+        color: var(--cinza-texto);
+        font-size: 15px;
+        margin-bottom: 30px;
     }
 
 @keyframes fadeIn {
@@ -212,50 +217,48 @@ a {
     }
 }
 
-/* Estilo para a caixa de controle de fonte */
+/* ==============================
+   Controle de fonte + Modo contraste
+   ============================== */
+
+/* Mantido exatamente como você mandou */
 #controle-fonte {
-    position: fixed; /* Fixa a posição da caixa na tela, mesmo quando rolar a página */
-    top: 68px; /* Distância de 80px do topo da página */
-    right: 20px; /* Distância de 20px da borda direita da página */
-    background-color: #fff; /* Fundo branco para a caixa */
-    border: 1px solid #ccc; /* Borda cinza clara em volta da caixa */
-    border-radius: 8px; /* Bordas arredondadas para deixar a caixa com cantos suaves */
-    padding: 10px; /* Espaçamento interno de 10px dentro da caixa */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra leve para dar efeito de elevação */
-    z-index: 1000; /* Garante que o controle fique acima de outros elementos na tela */
+    position: fixed;
+    top: 68px;
+    right: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
 }
 
-    /* Estilo para os botões dentro do controle de fonte */
     #controle-fonte button {
-        background-color: #6f4e37; /* Cor de fundo dos botões (tom de café) */
-        color: #fff; /* Cor da fonte dos botões (branca) */
-        border: none; /* Remove a borda padrão dos botões */
-        margin: 2px; /* Margem externa de 2px entre os botões */
-        padding: 8px 12px; /* Espaçamento interno (8px em cima/baixo, 12px nas laterais) */
-        font-size: 18px; /* Tamanho da fonte dos botões */
-        border-radius: 5px; /* Bordas arredondadas nos botões */
-        cursor: pointer; /* Mostra a mãozinha ao passar o mouse, indicando que é clicável */
+        background-color: #6f4e37;
+        color: #fff;
+        border: none;
+        margin: 2px;
+        padding: 8px 12px;
+        font-size: 18px;
+        border-radius: 5px;
+        cursor: pointer;
     }
 
-        /* Estilo para o botão quando o mouse passa por cima (hover) */
         #controle-fonte button:hover {
-            background-color: #5a392a; /* Cor mais escura para indicar que está sendo "hovered" */
+            background-color: #5a392a;
         }
 
-/* ==============================
-   Modo contraste (dark mode)
-   ============================== */
 body.contraste-ativo {
-    background-color: #121212; /* Fundo escuro */
-    color: #f5f5f5; /* Texto claro */
+    background-color: #121212 !important;
+    color: #f5f5f5 !important;
 }
 
-    /* Links */
+
     body.contraste-ativo a {
         color: #58a6ff;
     }
 
-    /* Controle de fonte escuro */
     body.contraste-ativo #controle-fonte {
         background-color: #222;
         border-color: #555;
@@ -270,9 +273,6 @@ body.contraste-ativo {
                 background-color: #666;
             }
 
-    /* ==============================
-   Navbar no modo contraste
-   ============================== */
     body.contraste-ativo .navbar {
         background-color: #1e1e1e !important;
         border-bottom: 1px solid #333;
@@ -286,4 +286,3 @@ body.contraste-ativo {
             body.contraste-ativo .navbar .nav-link:hover {
                 color: #58a6ff !important;
             }
-
