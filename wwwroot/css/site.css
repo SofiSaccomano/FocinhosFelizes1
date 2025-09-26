@@ -286,3 +286,18 @@ body.contraste-ativo {
             body.contraste-ativo .navbar .nav-link:hover {
                 color: #58a6ff !important;
             }
+
+    /* Footer no contraste alto */
+    body.contraste-ativo footer {
+        background-color: #1e1e1e !important; /* fundo escuro */
+        color: #f5f5f5 !important; /* texto claro */
+        border-top: 1px solid #333 !important;
+    }
+
+        body.contraste-ativo footer a {
+            color: #58a6ff !important; /* links em destaque */
+        }
+
+            body.contraste-ativo footer a:hover {
+                color: #a0cfff !important;
+            }
