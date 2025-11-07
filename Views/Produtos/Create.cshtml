@@ -5,7 +5,7 @@
 }
 
 <div class="container py-5 my-5 d-flex justify-content-center align-items-center" style="min-height: 60vh;">
-    <div class="form-card w-100" style="max-width: 700px; background-color:#ffe8cd; box-shadow: 0 8px 20px rgba(210, 115, 0, 0.25); padding: 40px; border-radius: 15px;">
+    <div class="form-card w-100" style="max-width: 700px; background-color:#ffe8cd; box-shadow: 0 8px 20px rgba(210, 115, 0, 0.25); padding: 40px; border-radius: 16px;">
         <h1 class="text-center fw-bold mb-4" style="color:#d27300; letter-spacing: 1px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
             Cadastro de Produtos
         </h1>
@@ -16,12 +16,12 @@
 
             <div class="row mb-4">
                 <div class="col-12 col-lg-6 mb-3 mb-lg-0">
-                    <label asp-for="NomeCategoria" class="form-label fw-semibold" style="color:#a85e00;">Nome da Categoria</label>
+                    <label asp-for="NomeCategoria" class="form-label fw-semibold" style="color:#a85e00;">Nome do Produto</label>
                     <input asp-for="NomeCategoria"
                            class="form-control form-control-lg"
                            style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;"
-                           placeholder="Digite o nome da categoria" required />
-                    <div class="invalid-feedback">Por favor, informe o nome da categoria.</div>
+                           placeholder="Digite o nome do produto" required />
+                    <div class="invalid-feedback">Por favor, informe o nome do produto.</div>
                     <span asp-validation-for="NomeCategoria" class="text-danger"></span>
                 </div>
 
@@ -30,8 +30,12 @@
                     <select asp-for="CategoriaId"
                             class="form-control form-control-lg"
                             asp-items="ViewBag.CategoriaId"
-                            style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;">
+                            style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;"
+                            required>
+                        <option value="">Selecione uma categoria</option>
                     </select>
+                    <div class="invalid-feedback">Por favor, selecione uma categoria.</div>
+                    <span asp-validation-for="CategoriaId" class="text-danger"></span>
                 </div>
             </div>
 

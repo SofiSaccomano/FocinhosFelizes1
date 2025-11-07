@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 :root {
     --laranja-escuro: #af5700;
     --laranja-medio: #d27300;
@@ -12,6 +14,7 @@
     --preto: #000000;
     --creme: #fff9f3;
     --fundo-suave: #f6f3ee;
+    --fonte-principal: 'Playfair Display', serif;
 }
 
 html {
@@ -29,7 +32,13 @@ html {
 body {
     background-color: var(--creme);
     color: var(--preto-quente);
-    font-family: "Poppins", sans-serif;
+    font-family: var(--fonte-principal);
+    background: linear-gradient(135deg, #fffaf5 0%, #ffffff 100%);
+    color: #333;
+}
+
+* {
+    font-family: var(--fonte-principal);
 }
 
 .privacy {

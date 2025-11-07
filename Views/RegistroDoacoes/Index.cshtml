@@ -3,61 +3,59 @@
 @{
     ViewData["Title"] = "Registro de Doações";
 }
-<head>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<div class="container py-5" style="min-height: 70vh;">
+    <div class="card-categorias shadow">
 
-</head>
+        <h1 class="text-center text-dark mb-3 fw-bold">Registro de Doações</h1>
 
-<div id="listaRegistroDoacoes" class="container tabela-reservas text-dark p-5 my-5 mt-6 d-flex flex-column justify-content-center" style="min-height: 60vh;">
-    <h1 class="text-center text-dark mb-3 fw-bold">Registro de Doações</h1>
+        <div class="row align-items-start gap-3 mb-4">
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
 
-    <div class="row align-items-start gap-3 mb-4">
-        <div class="col-auto d-flex align-items-stretch">
-            <a asp-action="Create" class="btn btn-secondary px-4 d-flex align-items-center" style="height: 54px;">
-                <i class="bi bi-plus-circle me-2"></i> Adicionar
-            </a>
+                <a asp-action="Create" class="btn btn-laranja btn-lg px-4 d-flex align-items-center">
+                    <i class="bi bi-plus-circle me-2"></i> Nova Categoria
+                </a>
+
+                <form asp-action="Search" method="get" class="flex-grow-1">
+                    <div class="input-group input-group-lg">
+                        <input type="text" name="searchTerm" class="form-control" placeholder="Buscar por tipo ou descrição...">
+                        <button type="submit" class="btn btn-laranja">
+                            <i class="bi bi-search me-1"></i> Buscar
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="col">
-            <form asp-action="Search" method="get">
-                <div class="input-group input-group-lg">
-                    <input type="text" name="searchTerm" class="form-control" placeholder="Buscar por produtos..." style="height: 54px;" />
-                    <button type="submit" class="btn btn-secondary" style="height: 54px;">
-                        <i class="bi bi-search me-2"></i> Buscar
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
 
-    <table class="table tabela-reservas text-dark table-striped">
-        <thead>
-            <tr>
-                <th>Produto</th>
-                <th>Doador</th>
-                <th>Validade</th>
-                <th>Data da Doação</th>
-                <th class="text-end">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+        <table class="table tabela-reservas text-dark table-striped">
+            <thead>
                 <tr>
-                    <td>@item.Produtos.ProdutosId</td>
-                    <td>@item.Doador.NomeDoador</td>
-                    <td>@item.ValidadeProduto</td>
-                    <td>@item.DataDoacao</td>
-                    <td class="text-end">
-                        <a asp-action="Edit" asp-route-id="@item.RegistroDoacaoId" class="text-dark me-3 text-decoration-none align-items-center">
-                            <i class="bi bi-pencil me-1"></i>
-                        </a>
-                        <a asp-action="Delete" asp-route-id="@item.RegistroDoacaoId" class="text-dark text-decoration-none align-items-center">
-                            <i class="bi bi-trash3 me-1"></i>
-                        </a>
-                    </td>
+                    <th>Produto</th>
+                    <th>Doador</th>
+                    <th>Validade</th>
+                    <th>Data da Doação</th>
+                    <th class="text-end">Ações</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Produtos.NomeCategoria</td>
+                        <td>@item.Doador.NomeDoador</td>
+                        <td>@item.ValidadeProduto</td>
+                        <td>@item.DataDoacao</td>
+                        <td class="text-end">
+                            <a asp-action="Edit" asp-route-id="@item.RegistroDoacaoId" class="text-dark me-3 d-inline-flex align-items-center">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.RegistroDoacaoId" class="text-dark d-inline-flex align-items-center">
+                                <i class="bi bi-trash3"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

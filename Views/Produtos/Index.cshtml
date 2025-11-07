@@ -4,53 +4,56 @@
     ViewData["Title"] = "Produtos";
 }
 
-<div id="listaProdutos" class="container tabela-reservas text-dark p-5 my-5 mt-6 d-flex flex-column justify-content-center" style="min-height: 60vh;">
-    <h1 class="text-center text-dark mb-3 fw-bold">Produtos</h1>
+<div class="container py-5" style="min-height: 70vh;">
+    <div class="card-categorias shadow">
+        <h1 class="text-center text-dark mb-4 fw-bold">Produtos</h1>
 
-    <div class="row align-items-start gap-3 mb-4">
-        <div class="col-auto d-flex align-items-stretch">
-            <a asp-action="Create" class="btn btn-secondary px-4 d-flex align-items-center" style="height: 54px;">
-                <i class="bi bi-plus-circle me-2"></i>Adicionar
+        <!-- Ações superiores -->
+        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+            <a asp-action="Create" class="btn btn-laranja btn-lg px-4 d-flex align-items-center">
+                <i class="bi bi-plus-circle me-2"></i> Nova Produto
             </a>
-        </div>
-        <div class="col">
-            <form asp-action="Search" method="get">
+
+            <form asp-action="Search" method="get" class="flex-grow-1">
                 <div class="input-group input-group-lg">
-                    <input type="text" name="searchTerm" class="form-control" placeholder="Buscar por nome ou descrição..." style="height: 54px;" />
-                    <button type="submit" class="btn btn-secondary" style="height: 54px;">
-                        Buscar
+                    <input type="text" name="searchTerm" class="form-control" placeholder="Buscar por nome ou descrição...">
+                    <button type="submit" class="btn btn-laranja">
+                        <i class="bi bi-search me-1"></i> Buscar
                     </button>
                 </div>
             </form>
         </div>
-    </div>
 
-    <table class="table tabela-reservas text-dark table-striped">
-        <thead>
-            <tr>
-                <th>Nome Categoria</th>
-                <th>Categoria</th>
-                <th>Descrição Produto</th>
-                <th class="text-end">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.NomeCategoria</td>
-                    <td>@item.Categoria.TipoCategoria</td>
-                    <td>@item.DescricaoProduto</td>
-                    <td class="text-end">
-                        <a asp-action="Edit" asp-route-id="@item.ProdutosId" class="text-dark me-3 text-decoration-none align-items-center">
-                            <i class="bi bi-pencil"></i>
-                        </a>
-                        <a asp-action="Delete" asp-route-id="@item.ProdutosId" class="text-dark text-decoration-none align-items-center">
-                            <i class="bi bi-trash3"></i>
-                        </a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        <!-- Tabela -->
+        <div class="table-responsive">
+            <table class="table table-hover align-middle text-center">
+                <thead>
+                    <tr>
+                        <th>Nome Produto</th>
+                        <th>Categoria</th>
+                        <th>Descrição Produto</th>
+                        <th class="text-end">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@item.NomeCategoria</td>
+                            <td>@item.Categoria.TipoCategoria</td>
+                            <td>@item.DescricaoProduto</td>
+                            <td class="text-end">
+                                <a asp-action="Edit" asp-route-id="@item.ProdutosId" class="btn-acao me-3">
+                                    <i class="bi bi-pencil-square fs-5"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.ProdutosId" class="btn-acao">
+                                    <i class="bi bi-trash3 fs-5"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
