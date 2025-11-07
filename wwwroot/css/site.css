@@ -410,3 +410,167 @@ table.table thead {
     background-color: var(--laranja-suave) !important;
     color: var(--branco);
 }
+
+
+
+
+.home-dashboard {
+    padding-top: 40px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.welcome-box h1 {
+    font-size: 2.3rem;
+    color: #3a3a3a;
+    margin-bottom: 10px;
+}
+
+.welcome-box h2 {
+    font-size: 1.5rem;
+    color: #444;
+}
+
+.highlight {
+    color: #ff6b35;
+    text-shadow: 0 0 8px rgba(255, 107, 53, 0.3);
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px 100px;
+    background: radial-gradient(circle at top, #fffaf5 0%, #fff5ed 100%);
+}
+
+.home-dashboard .welcome-box h1 {
+    font-size: 3rem; /* bem grande */
+    font-weight: 900;
+    color: #3a2004;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+    margin-bottom: 20px;
+    line-height: 1.1;
+    text-align: center;
+}
+
+.home-dashboard .welcome-box h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #d65a1e;
+    margin-top: 10px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+}
+
+/* ===== IMAGEM / CARROSSEL ===== */
+.carousel {
+    width: 80%;
+    max-width: 1100px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    margin: 0 auto 80px; /* centraliza e dá espaço inferior */
+}
+
+    .carousel img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+
+/* --- Dashboard Cards --- */
+.dashboard-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.card-link {
+    text-decoration: none;
+}
+
+.dashboard-card {
+    background: #fff;
+    border-radius: 20px;
+    width: 220px;
+    padding: 25px 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+    }
+
+    .dashboard-card .icon {
+        font-size: 2.3rem;
+        color: #ff6b35;
+        margin-bottom: 10px;
+    }
+
+    .dashboard-card h5 {
+        color: #333;
+        font-weight: 600;
+        margin: 0;
+    }
+
+/* --- Animação de entrada --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-card {
+        width: 80%;
+    }
+}
+
+/* ===== AJUSTE DO CARROSSEL NA HOME ===== */
+.home-dashboard .carousel {
+    width: 85%;
+    max-width: 1100px; /* limita o tamanho */
+    margin: 0 auto 80px; /* centraliza e afasta do rodapé */
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.home-dashboard .carousel-inner img {
+    width: 100%;
+    height: 500px; /* define altura fixa proporcional */
+    object-fit: cover; /* corta o excesso e centraliza */
+    border-radius: 25px;
+}
+
+.btn-laranja {
+    background-color: var(--laranja-medio) !important;
+    border-color: var(--laranja-medio) !important;
+
+    @@ -555,3 +405,8 @@ body.contraste-ativo {
+        .btn-acao:hover {
+            color: var(--laranja);
+        }
+        /* Cabeçalho da tabela agora mais suave */
+        table.table thead {
+            background-color: var(--laranja-suave) !important;
+            color: var(--branco);
+        }
+    }
+}
