@@ -301,3 +301,48 @@ body.contraste-ativo {
             body.contraste-ativo footer a:hover {
                 color: #a0cfff !important;
             }
+
+.btn-laranja {
+    background-color: var(--laranja-medio) !important;
+    border-color: var(--laranja-medio) !important;
+    color: var(--branco) !important;
+    transition: 0.2s;
+}
+
+    .btn-laranja:hover {
+        background-color: var(--laranja-escuro) !important;
+        border-color: var(--laranja-escuro) !important;
+    }
+
+/* Botões de ação ícones */
+.btn-acao {
+    color: var(--laranja-medio);
+    transition: 0.2s;
+}
+
+    .btn-acao:hover {
+        color: var(--laranja-escuro);
+    }
+
+/* Card / Conteúdo principal */
+.card-categorias {
+    background-color: var(--branco);
+    border: 1px solid var(--laranja-suave);
+    border-radius: 14px;
+    padding: 2rem;
+}
+
+table.table tbody tr {
+    background-color: var(--branco) !important; /* branco suave */
+}
+
+/* Fundo ao passar o mouse */
+.table-hover tbody tr:hover {
+    background-color: var(--laranja-pastel) !important; /* pastel suave */
+}
+
+/* Cabeçalho da tabela agora mais suave */
+table.table thead {
+    background-color: var(--laranja-suave) !important;
+    color: var(--branco);
+}
