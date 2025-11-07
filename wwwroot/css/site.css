@@ -8,6 +8,12 @@
     --laranja-pastel: #fff2e0; /* mais claro para fundo */
     --branco: #ffffff;
     --cinza-texto: #2c2c2c; /* cor de texto padrão */
+
+    --laranja: #d48c45;
+    --laranja-hover: #af5700;
+    --preto: #000000;
+    --creme: #fff9f3;
+    --fundo-suave: #f6f3ee;
     --fonte-principal: 'Playfair Display', serif;
 }
 
@@ -24,9 +30,10 @@ html {
 }
 
 body {
+    background-color: var(--creme);
+    color: var(--preto-quente);
     font-family: var(--fonte-principal);
     background: linear-gradient(135deg, #fffaf5 0%, #ffffff 100%);
-    font-family: 'Poppins', sans-serif;
     color: #333;
 }
 
@@ -51,7 +58,7 @@ body {
 
 /* ==============================
    Tabelas
-   ============================== */
+   ============================== 
 .tabela-reservas {
     background-color: var(--laranja-pastel);
     border-collapse: collapse;
@@ -65,11 +72,11 @@ body {
     }
 
     .tabela-reservas tbody tr:nth-child(even) {
-        background-color: #f7c67a; /* contraste melhorado */
+        background-color: #f7c67a; /* contraste melhorado 
     }
 
     .tabela-reservas tbody tr:nth-child(odd) {
-        background-color: #e6a34b; /* tom médio para diferenciar */
+        background-color: #e6a34b; /* tom médio para diferenciar 
     }
 
     .tabela-reservas td,
@@ -83,9 +90,9 @@ body {
 
     .tabela-reservas i.fa-file {
         margin-right: 6px;
-        color: rgba(0, 0, 0, 0.6); /* mais visível que 0.4 */
+        color: rgba(0, 0, 0, 0.6);  mais visível que 0.4 
     }
-
+    */
 /* ==============================
    Botões
    ============================== */
@@ -334,23 +341,70 @@ body.contraste-ativo {
         color: var(--laranja-escuro);
     }
 
-/* Card / Conteúdo principal */
+/* Card */
 .card-categorias {
-    background-color: var(--branco);
-    border: 1px solid var(--laranja-suave);
+    background: var(--creme);
     border-radius: 14px;
-    padding: 2rem;
+    padding: 38px 48px;
+    max-width: 1150px;
+    margin: 0 auto;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    color: var(--preto);
 }
 
-table.table tbody tr {
-    background-color: var(--branco) !important; /* branco suave */
+    /* Título */
+    .card-categorias h1 {
+        color: var(--laranja) !important;
+    }
+
+/* Botão primário */
+.btn-laranja {
+    background: var(--laranja);
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: .25s;
 }
 
-/* Fundo ao passar o mouse */
+    .btn-laranja:hover {
+        background: var(--laranja-hover);
+    }
+
+/* Tabela */
+.table {
+    background: var(--creme);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+    /* Cabeçalho */
+    .table thead {
+        background: var(--laranja);
+        color: white;
+        font-weight: 600;
+        letter-spacing: .3px;
+    }
+
+    /* Linhas */
+    .table td, .table th {
+        padding: 14px 18px;
+    }
+
+/* Hover suave */
 .table-hover tbody tr:hover {
-    background-color: var(--laranja-pastel) !important; /* pastel suave */
+    background: var(--fundo-suave);
 }
 
+/* Ícones */
+.btn-acao {
+    color: var(--preto);
+    transition: .25s;
+}
+
+    .btn-acao:hover {
+        color: var(--laranja);
+    }
 /* Cabeçalho da tabela agora mais suave */
 table.table thead {
     background-color: var(--laranja-suave) !important;
