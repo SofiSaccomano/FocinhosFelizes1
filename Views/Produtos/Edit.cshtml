@@ -1,15 +1,19 @@
 ﻿@model FocinhosFelizes1.Models.Produtos
 
 @{
-    ViewData["Title"] = "Editar Produtos";
+    ViewData["Title"] = "Editar Produto";
 }
 
 <div class="container py-5 my-5 d-flex justify-content-center align-items-center" style="min-height: 60vh;">
-    <div class="form-card w-100" style="max-width: 800px; background-color:#ffe8cd; box-shadow: 0 8px 20px rgba(210,115,0,0.25); padding: 40px; border-radius: 16px;">
-        <h1 class="text-center fw-bold mb-4" style="color:#e48200; letter-spacing: 0.5px;">Editar Produto</h1>
-        <hr style="border-top: 3px solid #d27300; border-radius: 10px;" />
+    <div class="card-categorias shadow w-100" style="max-width: 700px; padding: 40px; border-radius: 16px; border: 2px solid #C48A5A; background-color: #FFF5EB;">
 
-        <form asp-action="Edit" class="text-dark needs-validation" novalidate>
+        <h1 class="text-center fw-bold mb-4" style="color: #8C5E3C; letter-spacing: 0.5px;">
+            Editar Produto
+        </h1>
+
+        <hr style="border-top: 3px solid #C48A5A; border-radius: 10px;" />
+
+        <form asp-action="Edit" class="needs-validation" novalidate>
             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
             <input type="hidden" asp-for="ProdutosId" />
 
@@ -20,15 +24,18 @@
                            class="form-control form-control-lg"
                            style="border: 2px solid #C48A5A; border-radius: 12px; background-color: #FFF8F2; color:#5A4330;"
                            placeholder="Digite o nome do produto" required />
-                    <div class="invalid-feedback">Por favor, insira o nome do produto.</div>
                     <span asp-validation-for="NomeCategoria" class="text-danger"></span>
                 </div>
+
                 <div class="col-12 col-lg-6">
                     <label asp-for="CategoriaId" class="form-label fw-semibold" style="color:#5A4330;">Categoria</label>
-                    <select asp-for="CategoriaId" class="form-select form-select-lg" asp-items="ViewBag.CategoriaId" style="border: 2px solid #C48A5A; border-radius: 12px; background-color: #FFF8F2; color:#5A4330;" required>
+                    <select asp-for="CategoriaId"
+                            asp-items="ViewBag.CategoriaId"
+                            class="form-select form-select-lg"
+                            style="border: 2px solid #C48A5A; border-radius: 12px; background-color: #FFF8F2; color:#5A4330;"
+                            required>
                         <option value="">Selecione uma categoria</option>
                     </select>
-                    <div class="invalid-feedback">Por favor, selecione uma categoria.</div>
                     <span asp-validation-for="CategoriaId" class="text-danger"></span>
                 </div>
             </div>
@@ -40,21 +47,23 @@
                            class="form-control form-control-lg"
                            style="border: 2px solid #C48A5A; border-radius: 12px; background-color: #FFF8F2; color:#5A4330;"
                            placeholder="Descreva o produto" required />
-                    <div class="invalid-feedback">Por favor, insira a descrição do produto.</div>
                     <span asp-validation-for="DescricaoProduto" class="text-danger"></span>
                 </div>
             </div>
 
-            <div class="row gap-3 d-flex justify-content-between">
+            <div class="row g-3 justify-content-between">
                 <div class="col-lg-4 col-md-6 col-12">
                     <button type="submit"
-                            class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center gap-2">
+                            class="btn w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2"
+                            style="background-color:#8C5E3C; color:white; border-radius: 12px; box-shadow:0 4px 12px rgba(92,48,20,0.4);">
                         <i class="bi bi-check2-circle"></i> Salvar
                     </button>
                 </div>
+
                 <div class="col-lg-4 col-md-6 col-12">
                     <a asp-action="Index"
-                       class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center gap-2">
+                       class="btn w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2"
+                       style="background-color:#C48A5A; color:white; border-radius: 12px; box-shadow:0 4px 12px rgba(92,48,20,0.3);">
                         <i class="bi bi-arrow-left"></i> Voltar
                     </a>
                 </div>
@@ -62,9 +71,6 @@
         </form>
     </div>
 </div>
-
-
-}
 
 @section Scripts {
     <script>

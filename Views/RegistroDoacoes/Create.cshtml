@@ -6,29 +6,33 @@
 
 <div class="container py-5 my-5 d-flex justify-content-center align-items-center" style="min-height: 60vh;">
     <div class="card-categorias shadow w-100" style="max-width: 700px; padding: 40px; border-radius: 16px; border: 2px solid #C48A5A; background-color: #FFF5EB;">
+
         <h1 class="text-center fw-bold mb-4" style="color: #8C5E3C; letter-spacing: 0.5px;">
             Registro de Doações
         </h1>
-        <hr style="border-top: 3px solid #d27300; border-radius: 10px;" />
 
-        <form asp-action="Create" class="text-dark needs-validation" novalidate>
+        <hr style="border-top: 3px solid #C48A5A; border-radius: 10px;" />
+
+        <form asp-action="Create" class="needs-validation" novalidate>
             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
             <div class="row mb-4">
                 <div class="col-12 col-lg-6 mb-3 mb-lg-0">
-                    <label asp-for="ProdutosId" class="form-label fw-semibold" style="color:#a85e00;">Produto</label>
+                    <label asp-for="ProdutosId" class="form-label fw-semibold" style="color:#5A4330;">Produto</label>
                     <select asp-for="ProdutosId"
                             class="form-control form-control-lg"
                             asp-items="ViewBag.ProdutosId"
-                            style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;">
+                            style="border: 2px solid #C48A5A; border-radius: 12px; background-color: #FFF8F2; color:#5A4330;">
                     </select>
+                    <span asp-validation-for="ProdutosId" class="text-danger"></span>
                 </div>
+
                 <div class="col-12 col-lg-6">
-                    <label asp-for="DoadorId" class="form-label fw-semibold" style="color:#a85e00;">Doador</label>
+                    <label asp-for="DoadorId" class="form-label fw-semibold" style="color:#5A4330;">Doador</label>
                     <select asp-for="DoadorId"
                             class="form-control form-control-lg"
                             asp-items="ViewBag.DoadorId"
-                            style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;">
+                            style="border: 2px solid #C48A5A; border-radius: 12px; background-color: #FFF8F2; color:#5A4330;">
                     </select>
                     <span asp-validation-for="DoadorId" class="text-danger"></span>
                 </div>
@@ -36,35 +40,37 @@
 
             <div class="row mb-4">
                 <div class="col-12 col-lg-6 mb-3 mb-lg-0">
-                    <label asp-for="ValidadeProduto" class="form-label fw-semibold" style="color:#a85e00;">Validade do Produto</label>
+                    <label asp-for="ValidadeProduto" class="form-label fw-semibold" style="color:#5A4330;">Validade do Produto</label>
                     <input asp-for="ValidadeProduto"
                            class="form-control form-control-lg"
-                           style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;"
+                           style="border: 2px solid #C48A5A; border-radius: 12px; background-color: #FFF8F2; color:#5A4330;"
                            required />
                     <span asp-validation-for="ValidadeProduto" class="text-danger"></span>
                 </div>
+
                 <div class="col-12 col-lg-6">
-                    <label asp-for="DataDoacao" class="form-label fw-semibold" style="color:#a85e00;">Data da Doação</label>
+                    <label asp-for="DataDoacao" class="form-label fw-semibold" style="color:#5A4330;">Data da Doação</label>
                     <input asp-for="DataDoacao"
                            class="form-control form-control-lg"
-                           style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;"
+                           style="border: 2px solid #C48A5A; border-radius: 12px; background-color: #FFF8F2; color:#5A4330;"
                            required />
                     <span asp-validation-for="DataDoacao" class="text-danger"></span>
                 </div>
             </div>
 
-            <div class="row gap-3 d-flex justify-content-between">
+            <div class="row g-3 justify-content-between">
                 <div class="col-lg-4 col-md-6 col-12">
                     <button type="submit"
-                            class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center gap-2"
-                            style="border-radius: 12px; font-weight: 600; box-shadow: 0 4px 12px rgba(108, 117, 125, 0.5);">
+                            class="btn w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2"
+                            style="background-color:#8C5E3C; color:white; border-radius: 12px; box-shadow:0 4px 12px rgba(92,48,20,0.4);">
                         <i class="bi bi-check2-circle"></i> Salvar
                     </button>
                 </div>
+
                 <div class="col-lg-4 col-md-6 col-12">
                     <a asp-action="Index"
-                       class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center gap-2"
-                       style="border-radius: 12px; font-weight: 600;">
+                       class="btn w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2"
+                       style="background-color:#C48A5A; color:white; border-radius: 12px; box-shadow:0 4px 12px rgba(92,48,20,0.3);">
                         <i class="bi bi-arrow-left"></i> Voltar
                     </a>
                 </div>
