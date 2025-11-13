@@ -1,65 +1,94 @@
 ﻿@model FocinhosFelizes1.Models.RegistroDoacao
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Registrar Doação";
 }
 
-<h2 class="display-6 text-center">Registro de Doações</h2>
-<hr />
+<div class="container py-5 my-5 d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="card-categorias shadow w-100" style="max-width: 700px; padding: 40px; border-radius: 16px; border: 2px solid #C48A5A; background-color: #FFF5EB;">
+        <h1 class="text-center fw-bold mb-4" style="color: #8C5E3C; letter-spacing: 0.5px;">
+            Registro de Doações
+        </h1>
+        <hr style="border-top: 3px solid #d27300; border-radius: 10px;" />
 
-<form asp-action="Create">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="row">
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="ProdutosId" class="control-label"></label>
-                <select asp-for="ProdutosId" class="form-control" asp-items="ViewBag.ProdutosId"></select>
+        <form asp-action="Create" class="text-dark needs-validation" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="row mb-4">
+                <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                    <label asp-for="ProdutosId" class="form-label fw-semibold" style="color:#a85e00;">Produto</label>
+                    <select asp-for="ProdutosId"
+                            class="form-control form-control-lg"
+                            asp-items="ViewBag.ProdutosId"
+                            style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;">
+                    </select>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <label asp-for="DoadorId" class="form-label fw-semibold" style="color:#a85e00;">Doador</label>
+                    <select asp-for="DoadorId"
+                            class="form-control form-control-lg"
+                            asp-items="ViewBag.DoadorId"
+                            style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;">
+                    </select>
+                    <span asp-validation-for="DoadorId" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="DoadorId" class="control-label"></label>
-                <select asp-for="DoadorId" class="form-control" asp-items="ViewBag.DoadorId"></select>
-                <span asp-validation-for="DoadorId" class="text-danger"></span>
+
+            <div class="row mb-4">
+                <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                    <label asp-for="ValidadeProduto" class="form-label fw-semibold" style="color:#a85e00;">Validade do Produto</label>
+                    <input asp-for="ValidadeProduto"
+                           class="form-control form-control-lg"
+                           style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;"
+                           required />
+                    <span asp-validation-for="ValidadeProduto" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <label asp-for="DataDoacao" class="form-label fw-semibold" style="color:#a85e00;">Data da Doação</label>
+                    <input asp-for="DataDoacao"
+                           class="form-control form-control-lg"
+                           style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;"
+                           required />
+                    <span asp-validation-for="DataDoacao" class="text-danger"></span>
+                </div>
             </div>
-        </div>
+
+            <div class="row gap-3 d-flex justify-content-between">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <button type="submit"
+                            class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center gap-2"
+                            style="border-radius: 12px; font-weight: 600; box-shadow: 0 4px 12px rgba(108, 117, 125, 0.5);">
+                        <i class="bi bi-check2-circle"></i> Salvar
+                    </button>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <a asp-action="Index"
+                       class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center gap-2"
+                       style="border-radius: 12px; font-weight: 600;">
+                        <i class="bi bi-arrow-left"></i> Voltar
+                    </a>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="row">
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="ValidadeProduto" class="control-label"></label>
-                <input asp-for="ValidadeProduto" class="form-control" />
-                <span asp-validation-for="ValidadeProduto" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="DataDoacao" class="control-label"></label>
-                <input asp-for="DataDoacao" class="form-control" />
-                <span asp-validation-for="DataDoacao" class="text-danger"></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-6 mt-3">
-            <div class="form-group">
-                <button type="submit" class="btn btn-secondary w-100 p-2 ">Salvar</button>
-            </div>
-        </div>
-
-        <div class="col-6 mt-3">
-            <div>
-                <a asp-action="Index" class="btn btn-outline-secondary w-100 p-2">Voltar</a>
-            </div>
-        </div>
-    </div>
-</form>
-
-
+</div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    <script>
+        (function () {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+            Array.from(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }

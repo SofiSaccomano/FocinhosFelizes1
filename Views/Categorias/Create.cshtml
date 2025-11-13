@@ -1,51 +1,81 @@
 ﻿@model FocinhosFelizes1.Models.Categoria
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criar Categoria";
 }
 
-<h2 class="display-6 text-center">Categorias</h2>
-<hr />
+<div class="container py-5 my-5 d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="card-categorias shadow w-100" style="max-width: 700px; padding: 40px; border-radius: 16px; border: 2px solid #C48A5A; background-color: #FFF5EB;">
 
-<form asp-action="Create">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="row">
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="TipoCategoria" class="control-label"></label>
-                <input asp-for="TipoCategoria" class="form-control" />
-                <span asp-validation-for="TipoCategoria" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="DescricaoCategoria" class="control-label"></label>
-                <input asp-for="DescricaoCategoria" class="form-control" />
-                <span asp-validation-for="DescricaoCategoria" class="text-danger"></span>
-            </div>
-        </div>
+        <h1 class="text-center fw-bold mb-4" style="color: #8C5E3C; letter-spacing: 0.5px;">
+            Criar Nova Categoria
+        </h1>
 
+        <hr style="border-top: 3px solid #C48A5A; border-radius: 10px;" />
+
+        <form asp-action="Create" class="needs-validation" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="row mb-4">
+                <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                    <label asp-for="TipoCategoria" class="form-label fw-semibold" style="color:#5A4330;">Tipo da Categoria</label>
+                    <input asp-for="TipoCategoria"
+                           class="form-control form-control-lg"
+                           style="border: 2px solid #C48A5A; border-radius: 12px; background-color: #FFF8F2; color:#5A4330;"
+                           placeholder="Digite o tipo da categoria" required />
+                    <span asp-validation-for="TipoCategoria" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <label asp-for="DescricaoCategoria" class="form-label fw-semibold" style="color:#5A4330;">Descrição</label>
+                    <input asp-for="DescricaoCategoria"
+                           class="form-control form-control-lg"
+                           style="border: 2px solid #C48A5A; border-radius: 12px; background-color: #FFF8F2; color:#5A4330;"
+                           placeholder="Descreva a categoria" required />
+                    <span asp-validation-for="DescricaoCategoria" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row g-3 justify-content-between">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <button type="submit"
+                            class="btn w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2"
+                            style="background-color:#8C5E3C; color:white; border-radius: 12px; box-shadow:0 4px 12px rgba(92,48,20,0.4);">
+                        <i class="bi bi-check2-circle"></i> Salvar
+                    </button>
+                </div>
+
+                <div class="col-lg-4 col-md-6 col-12">
+                    <a asp-action="Index"
+                       class="btn w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2"
+                       style="background-color:#C48A5A; color:white; border-radius: 12px; box-shadow:0 4px 12px rgba(92,48,20,0.3);">
+                        <i class="bi bi-arrow-left"></i> Voltar
+                    </a>
+                </div>
+            </div>
+        </form>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-6 mt-3">
-            <div class="form-group">
-                <button type="submit" class="btn btn-secondary w-100 p-2 ">Salvar</button>
-            </div>
-        </div>
-
-        <div class="col-6 mt-3">
-            <div>
-                <a asp-action="Index" class="btn btn-outline-secondary w-100 p-2"> Voltar</a>
-            </div>
-        </div>
-    </div>
-</form>
 
 
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    <script>
+        (function () {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+            Array.from(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }

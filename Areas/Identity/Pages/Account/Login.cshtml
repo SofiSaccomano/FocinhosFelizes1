@@ -1,49 +1,65 @@
 ﻿@page
 @model LoginModel
 @{
-    ViewData["Title"] = "Entrar - Focinhos Felizes";
+    ViewData["Title"] = "Login";
 }
 
-<link rel="stylesheet" href="~/css/login.css" />
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow-lg border-0" style="background-color: #ffe8cd; border-radius: 16px; max-width: 500px; width: 100%; box-shadow: -8px 0 20px rgba(192, 101, 0, 0.4);">
+        <div class="card-body p-5">
+            <h2 class="text-center mb-4 text-black fw-bold">Acesse sua conta</h2>
+            <form id="account" method="post" class="needs-validation" novalidate>
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-<div class="d-flex justify-content-center align-items-center vh-100 login-background">
-    <div class="login-card">
-        <div class="text-center mb-4">
-            <img src="~/images/logo.png" alt="Logo Focinhos Felizes" class="login-logo">
-            <h2 class="fw-bold mt-3">Bem-vindo de volta!</h2>
-            <p class="text-muted mb-0">Acesse sua conta e continue ajudando<br>a transformar vidas!</p>
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="email@example.com" />
+                    <label asp-for="Input.Email">E-mail</label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Password" type="password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="••••••" />
+                    <label asp-for="Input.Password">Senha</label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" asp-for="Input.RememberMe" />
+                    <label class="form-check-label" asp-for="Input.RememberMe">Lembrar-me</label>
+                </div>
+
+                <div class="d-grid">
+                    <button id="login-submit" type="submit" class="btn btn-lg" style="background-color:#C06500; color:white; font-weight:600;">
+                        Entrar
+                    </button>
+                </div>
+
+                <hr class="my-4" />
+                <div class="text-center">
+                    <a asp-page="./ForgotPassword" class="btn btn-outline-secondary w-100 mb-2">Esqueceu sua senha?</a>
+                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-secondary w-100 mb-2">Registrar novo usuário</a>
+                    <a asp-page="./ResendEmailConfirmation" class="btn btn-outline-secondary w-100">Reenviar confirmação por e-mail</a>
+                </div>
+            </form>
         </div>
-
-        <form id="account" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger text-center mb-3" role="alert"></div>
-
-            <div class="mb-3">
-                <label asp-for="Input.Email" class="form-label fw-semibold">E-mail</label>
-                <input asp-for="Input.Email" class="form-control p-2" placeholder="Seu e-mail" autocomplete="username" />
-                <span asp-validation-for="Input.Email" class="text-danger small"></span>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Input.Password" class="form-label fw-semibold">Senha</label>
-                <input asp-for="Input.Password" class="form-control p-2" placeholder="Sua senha" autocomplete="current-password" />
-                <span asp-validation-for="Input.Password" class="text-danger small"></span>
-            </div>
-
-            <div class="form-check mb-3">
-                <input class="form-check-input" asp-for="Input.RememberMe" />
-                <label class="form-check-label" asp-for="Input.RememberMe">Lembrar-me</label>
-            </div>
-
-            <button id="login-submit" type="submit" class="btn w-100 login-btn">Entrar</button>
-
-            <div class="text-center mt-3">
-                <a asp-page="./ForgotPassword" class="d-block">Esqueceu sua senha?</a>
-                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="d-block">Criar nova conta</a>
-            </div>
-        </form>
     </div>
 </div>
 
 @section Scripts {
+    <script>
+        (() => {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+            Array.from(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
     <partial name="_ValidationScriptsPartial" />
 }

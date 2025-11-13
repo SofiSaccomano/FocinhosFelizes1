@@ -1,56 +1,92 @@
 ﻿@model FocinhosFelizes1.Models.Produtos
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Cadastro de Produtos";
 }
 
-<h2 class="display-6 text-center">Produtos</h2>
-<form asp-action="Create">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="row">
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="NomeCategoria" class="control-label"></label>
-                <input asp-for="NomeCategoria" class="form-control" />
-                <span asp-validation-for="NomeCategoria" class="text-danger"></span>
+<div class="container py-5 my-5 d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="form-card w-100" style="max-width: 700px; background-color:#ffe8cd; box-shadow: 0 8px 20px rgba(210, 115, 0, 0.25); padding: 40px; border-radius: 16px;">
+        <h1 class="text-center fw-bold mb-4" style="color:#d27300; letter-spacing: 1px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+            Cadastro de Produtos
+        </h1>
+        <hr style="border-top: 3px solid #d27300; border-radius: 10px;" />
+
+        <form asp-action="Create" class="text-dark needs-validation" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="row mb-4">
+                <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                    <label asp-for="NomeCategoria" class="form-label fw-semibold" style="color:#a85e00;">Nome do Produto</label>
+                    <input asp-for="NomeCategoria"
+                           class="form-control form-control-lg"
+                           style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;"
+                           placeholder="Digite o nome do produto" required />
+                    <div class="invalid-feedback">Por favor, informe o nome do produto.</div>
+                    <span asp-validation-for="NomeCategoria" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    <label asp-for="CategoriaId" class="form-label fw-semibold" style="color:#a85e00;">Selecionar Categoria</label>
+                    <select asp-for="CategoriaId"
+                            class="form-control form-control-lg"
+                            asp-items="ViewBag.CategoriaId"
+                            style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;"
+                            required>
+                        <option value="">Selecione uma categoria</option>
+                    </select>
+                    <div class="invalid-feedback">Por favor, selecione uma categoria.</div>
+                    <span asp-validation-for="CategoriaId" class="text-danger"></span>
+                </div>
             </div>
-        </div>
-        <div class="col-12 col-lg-6">
-            <div class="form-group">
-                <label asp-for="CategoriaId" class="control-label"></label>
-                <select asp-for="CategoriaId" class="form-control" asp-items="ViewBag.CategoriaId"></select>
+
+            <div class="row mb-4">
+                <div class="col-12">
+                    <label asp-for="DescricaoProduto" class="form-label fw-semibold" style="color:#a85e00;">Descrição do Produto</label>
+                    <input asp-for="DescricaoProduto"
+                           class="form-control form-control-lg"
+                           style="border: 2px solid #d27300; border-radius: 12px; background-color: #fff7eb; color: #5c3a00;"
+                           placeholder="Descreva o produto" required />
+                    <div class="invalid-feedback">Por favor, insira a descrição do produto.</div>
+                    <span asp-validation-for="DescricaoProduto" class="text-danger"></span>
+                </div>
             </div>
-        </div>
+
+            <div class="row gap-3 d-flex justify-content-between">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <button type="submit"
+                            class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center gap-2"
+                            style="border-radius: 12px; font-weight: 600; box-shadow: 0 4px 12px rgba(108, 117, 125, 0.5);">
+                        <i class="bi bi-check2-circle"></i> Salvar
+                    </button>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <a asp-action="Index"
+                       class="btn btn-secondary w-100 py-2 d-flex align-items-center justify-content-center gap-2"
+                       style="border-radius: 12px; font-weight: 600;">
+                        <i class="bi bi-arrow-left"></i> Voltar
+                    </a>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="form-group">
-                <label asp-for="DescricaoProduto" class="control-label"></label>
-                <input asp-for="DescricaoProduto" class="form-control" />
-                <span asp-validation-for="DescricaoProduto" class="text-danger"></span>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-6 mt-3">
-            <div class="form-group">
-                <button type="submit" class="btn btn-secondary w-100 p-2 ">Salvar</button>
-            </div>
-        </div>
-
-        <div class="col-6 mt-3">
-            <div>
-                <a asp-action="Index" class="btn btn-outline-secondary w-100 p-2">Voltar</a>
-            </div>
-        </div>
-    </div>
-
-</form>
-
-
+</div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    <script>
+        (function () {
+            'use strict';
+            const forms = document.querySelectorAll('.needs-validation');
+            Array.from(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }
