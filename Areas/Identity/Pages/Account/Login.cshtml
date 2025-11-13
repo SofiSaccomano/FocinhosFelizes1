@@ -1,89 +1,46 @@
 ﻿@page
 @model LoginModel
-
 @{
-    ViewData["Title"] = "";
+    ViewData["Title"] = "Entrar - Focinhos Felizes";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-6 mt-3">
-        <section>
-            <form id="account" method="post">
-                <h2>Use uma conta local para fazer login.</h2>
-                <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                    <label asp-for="Input.Email" class="form-label">E-mail</label>
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-floating mb-3">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
-                    <label asp-for="Input.Password" class="form-label">Senha</label>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                @*<div class="checkbox mb-3">
-                <label asp-for="Input.RememberMe" class="form-label">
+<link rel="stylesheet" href="~/css/login.css" />
+
+<div class="d-flex justify-content-center align-items-center vh-100 login-background">
+    <div class="login-card">
+        <div class="text-center mb-4">
+            <img src="~/images/logo.png" alt="Logo Focinhos Felizes" class="login-logo">
+            <h2 class="fw-bold mt-3">Bem-vindo de volta!</h2>
+            <p class="text-muted mb-0">Acesse sua conta e continue ajudando<br>a transformar vidas!</p>
+        </div>
+
+        <form id="account" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger text-center mb-3" role="alert"></div>
+
+            <div class="mb-3">
+                <label asp-for="Input.Email" class="form-label fw-semibold">E-mail</label>
+                <input asp-for="Input.Email" class="form-control p-2" placeholder="Seu e-mail" autocomplete="username" />
+                <span asp-validation-for="Input.Email" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Input.Password" class="form-label fw-semibold">Senha</label>
+                <input asp-for="Input.Password" class="form-control p-2" placeholder="Sua senha" autocomplete="current-password" />
+                <span asp-validation-for="Input.Password" class="text-danger small"></span>
+            </div>
+
+            <div class="form-check mb-3">
                 <input class="form-check-input" asp-for="Input.RememberMe" />
-                @Html.DisplayNameFor(m => m.Input.RememberMe)
-                </label>
-                </div>*@
-                <div class="checkbox mb-3">
-                    <label class="form-label">
-                        <input class="form-check-input" asp-for="Input.RememberMe" />
-                        Lembrar-me
-                    </label>
-                </div>
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg" style="background-color:#C06500; color: white">Entre</button>
-                </div>
-                <br />
-                <div>
-                    <p>
-                        <button id="forgot-password" asp-page="./ForgotPassword" class="btn btn-secondary p-1 w-100">Esqueceu sua senha?</button>
-                    </p>
-                    <p>
-                        <button asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-secondary p-1 w-100">Registre um novo usuário</button>
-                    </p>
-                    <p>
-                        <button id="resend-confirmation" asp-page="./ResendEmailConfirmation" class="btn btn-secondary p-1 w-100">Reenviar confirmação por e-mail.</button>
-                    </p>
-                </div>
-            </form>
-        </section>
-    </div>
-    <div class="col-6 mt-3">
-        <section>
-            <h3>Use outro serviço para fazer login</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            Não há serviços de autenticação externa configurados. Veja isto <a style="color:chocolate" href="https://go.microsoft.com/fwlink/?LinkID=532715">
-                                artigo
-                                sobre como configurar este aplicativo ASP.NET para oferecer suporte ao login por meio de serviços externos
-                            </a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
+                <label class="form-check-label" asp-for="Input.RememberMe">Lembrar-me</label>
+            </div>
+
+            <button id="login-submit" type="submit" class="btn w-100 login-btn">Entrar</button>
+
+            <div class="text-center mt-3">
+                <a asp-page="./ForgotPassword" class="d-block">Esqueceu sua senha?</a>
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="d-block">Criar nova conta</a>
+            </div>
+        </form>
     </div>
 </div>
 
